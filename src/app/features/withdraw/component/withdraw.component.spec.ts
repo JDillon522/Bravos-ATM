@@ -44,10 +44,24 @@ describe('WithdrawComponent', () => {
     expect(component.form).toBeTruthy();
   });
 
-  it('Should disable withdraw button when form is invalid', () => {
-    component.form.setErrors({ required: true });
+  it('Should disable withdraw button when form amount is null', () => {
+    component.form.get('amount')?.setValue(null);
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
     expect(compiled.querySelector('button').disabled).toBeTrue();
+  });
+
+  it('Should disable withdraw button when form amount is less than 1', () => {
+    component.form.get('amount')?.setValue(0.50);
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement;
+    expect(compiled.querySelector('button').disabled).toBeTrue();
+  });
+
+  it('Should enable withdraw button when form amount is greater than 1', () => {
+    component.form.get('amount')?.setValue(5);
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement;
+    expect(compiled.querySelector('button').disabled).toBeFalse();
   });
 });

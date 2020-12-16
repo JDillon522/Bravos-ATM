@@ -8,11 +8,11 @@
         <form [formGroup]="form">
             <mat-form-field appearance="outline">
                 <mat-label>Amount</mat-label>
-                <input matInput currencyMask [options]="{ align: 'right', allowNegative: false}" placeholder="Amount" formControlName="amount" type="text">
+                <input matInput currencyMask [options]="{ align: 'right', allowNegative: false, precision: 0}" placeholder="Amount" formControlName="amount" type="text">
                 <!-- <mat-icon matPrefix>attach_money</mat-icon> -->
                 <mat-hint>In multiples of $1.00</mat-hint>
-                <mat-error *ngIf="form.errors?.required">Please enter a valid amount</mat-error>
-                <mat-error *ngIf="form.errors?.min">Amount must be at least $1.00</mat-error>
+                <mat-error *ngIf="amountControl.errors?.required">Please enter a valid amount</mat-error>
+                <mat-error *ngIf="amountControl.errors?.min">Amount must be at least $1.00</mat-error>
             </mat-form-field>
         </form>
 

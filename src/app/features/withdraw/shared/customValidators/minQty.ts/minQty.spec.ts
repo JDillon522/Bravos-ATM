@@ -6,6 +6,7 @@ describe('Custom Validator: minQty', () => {
 
     it('Should return null when control value is null', () => {
         const validator = minQty(1);
+        control.setValue(null);
         expect(validator(control)).toBeNull();
     });
 

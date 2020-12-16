@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { minQty } from '../shared/customValidators/minQty.ts/minQty';
 
 @Component({
@@ -15,6 +15,10 @@ export class WithdrawComponent implements OnInit {
       minQty(1)
     ]))
   });
+
+  get amountControl(): FormControl {
+    return this.form.get('amount') as FormControl;
+  }
 
   constructor(
     private fb: FormBuilder
