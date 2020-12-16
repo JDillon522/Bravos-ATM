@@ -2,8 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { OverviewRoutingModule } from './overview-routing.module';
-import { OverviewComponent } from './overview.component';
-import { MatCardModule } from '@angular/material/card'; 
+import { OverviewComponent } from './component/overview.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatTableModule } from '@angular/material/table';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [OverviewComponent],
@@ -11,7 +13,9 @@ import { MatCardModule } from '@angular/material/card';
     CommonModule,
     OverviewRoutingModule,
 
-    MatCardModule
+    MatCardModule,
+    MatTableModule,
+    MatIconModule
   ],
   exports: [OverviewComponent]
 })

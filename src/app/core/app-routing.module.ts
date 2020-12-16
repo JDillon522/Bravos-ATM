@@ -4,15 +4,15 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./overview/overview.module').then(m => m.OverviewModule)
+    loadChildren: () => import('../features/overview/overview.module').then(m => m.OverviewModule)
   },
   {
     path: 'withdraw',
-    loadChildren: () => import('./withdraw/withdraw.module').then(m => m.WithdrawModule)
+    loadChildren: () => import('../features/withdraw/withdraw.module').then(m => m.WithdrawModule)
   },
   {
     path: 'restock',
-    loadChildren: () => import('./restock/restock.module').then(m => m.RestockModule)
+    loadChildren: () => import('../features/restock/restock.module').then(m => m.RestockModule)
   },
   {
     path: '**',

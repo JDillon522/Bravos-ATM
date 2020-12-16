@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { WithdrawComponent } from './withdraw.component';
+import { RestockComponent } from './component/restock.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: WithdrawComponent
+    component: RestockComponent
   }
 ];
 
@@ -13,4 +13,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class WithdrawRoutingModule { }
+export class RestockRoutingModule { }

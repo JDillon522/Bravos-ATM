@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { OverviewComponent } from './overview.component';
+import { WithdrawComponent } from './component/withdraw.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: OverviewComponent
+    component: WithdrawComponent
   }
 ];
 
@@ -13,4 +13,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class OverviewRoutingModule { }
+export class WithdrawRoutingModule { }
