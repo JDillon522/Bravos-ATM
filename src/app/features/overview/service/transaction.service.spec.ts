@@ -10,12 +10,12 @@ export const dummyTransactions: Transaction[] = [
     amount: 35,
     type: 'withdrawal',
     denominations: {
-      100: 0,
-      50: 0,
-      20: 1,
-      10: 1,
-      5: 1,
-      1: 0
+      hundreds: 0,
+      fifties: 0,
+      twenties: 1,
+      tens: 1,
+      fives: 1,
+      ones: 0
     }
   },
   {
@@ -23,12 +23,12 @@ export const dummyTransactions: Transaction[] = [
     type: 'withdrawal',
     amount: 63,
     denominations: {
-      100: 0,
-      50: 1,
-      20: 0,
-      10: 1,
-      5: 0,
-      1: 3
+      hundreds: 0,
+      fifties: 1,
+      twenties: 0,
+      tens: 1,
+      fives: 0,
+      ones: 3
     }
   },
   {
@@ -36,12 +36,12 @@ export const dummyTransactions: Transaction[] = [
     type: 'restock',
     amount: 128,
     denominations: {
-      100: 0,
-      50: 2,
-      20: 0,
-      10: 2,
-      5: 0,
-      1: 8
+      hundreds: 0,
+      fifties: 2,
+      twenties: 0,
+      tens: 2,
+      fives: 0,
+      ones: 8
     }
   }
 ];

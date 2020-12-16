@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -64,4 +64,28 @@ describe('WithdrawComponent', () => {
     const compiled = fixture.nativeElement;
     expect(compiled.querySelector('button').disabled).toBeFalse();
   });
+
+  it('Should submit the withdrawCash method when input is valid', fakeAsync(() => {
+    component.form.get('amount')?.setValue(5);
+    spyOn(component, 'withdrawCash');
+
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement;
+    compiled.querySelector('button').click();
+
+    tick();
+    expect(component.withdrawCash).toHaveBeenCalled();
+  }));
+
+  it('Should not submit the withdrawCash method when input is invalid', fakeAsync(() => {
+    component.form.get('amount')?.setValue(0.50);
+    spyOn(component, 'withdrawCash');
+
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement;
+    compiled.querySelector('button').click();
+    tick();
+
+    expect(component.withdrawCash).not.toHaveBeenCalled();
+  }));
 });

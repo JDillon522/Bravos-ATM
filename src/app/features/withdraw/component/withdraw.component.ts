@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
+import { ATMService } from 'src/app/core/service/app.service';
 import { minQty } from '../shared/customValidators/minQty.ts/minQty';
 
 @Component({
@@ -7,8 +9,8 @@ import { minQty } from '../shared/customValidators/minQty.ts/minQty';
   templateUrl: './withdraw.component.html',
   styleUrls: ['./withdraw.component.scss']
 })
-export class WithdrawComponent implements OnInit {
-
+export class WithdrawComponent implements OnInit, OnDestroy {
+  private subscriptions: Subscription = new Subscription();
   public form: FormGroup = this.fb.group({
     amount: this.fb.control(null, Validators.compose([
       Validators.required,
@@ -21,11 +23,24 @@ export class WithdrawComponent implements OnInit {
   }
 
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private atmService: ATMService
   ) { }
 
   ngOnInit(): void {
 
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
+  }
+
+  public withdrawCash(): void {
+    this.subscriptions.add(
+      this.atmService.withdrawCash(this.amountControl.value).subscribe(res => {
+
+      })
+    );
   }
 
 }

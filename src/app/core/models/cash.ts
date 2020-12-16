@@ -1,9 +1,19 @@
 export interface Cash {
-    100: number;
-    50: number;
-    20: number;
-    10: number;
-    5: number;
-    1: number;
+    hundreds: number;
+    fifties: number;
+    twenties: number;
+    tens: number;
+    fives: number;
+    ones: number;
+}
+
+export type CashIndexs = 'hundreds' | 'fifties' | 'twenties' | 'tens' | 'fives' | 'ones';
+export const CashValuesByIndex: Cash = {
+    hundreds: 100,
+    fifties: 50,
+    twenties: 20,
+    tens: 10,
+    fives: 5,
+    ones: 1
 }
 

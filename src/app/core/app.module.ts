@@ -9,7 +9,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
-import { AppService } from './service/app.service';
+import { ATMService } from './service/app.service';
 import { TransactionService } from '../features/overview/service/transaction.service';
 @NgModule({
   declarations: [
@@ -26,7 +26,7 @@ import { TransactionService } from '../features/overview/service/transaction.ser
     MatButtonModule
   ],
   providers: [
-    AppService,
+    ATMService,
     TransactionService
   ],
   bootstrap: [AppComponent]
