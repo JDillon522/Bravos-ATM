@@ -1,0 +1,19 @@
+
+:host {
+    form {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+
+        div {
+            min-width: 250px;
+            display: flex;
+            flex-direction: column;
+
+            mat-form-field {
+                max-width: 100px;
+            }
+        }
+
+    }
+}
