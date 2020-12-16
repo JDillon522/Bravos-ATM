@@ -1,0 +1,13 @@
+@import '../styles/variables.scss';
+
+:host {
+    mat-card {
+        max-width: 70%;
+        min-width: 300px;
+        margin: auto;
+    }
+
+    button {
+        margin-right: $baseMargin;
+    }
+}

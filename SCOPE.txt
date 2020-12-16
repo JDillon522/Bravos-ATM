@@ -24,3 +24,11 @@ ATM Overview Page
 Display the quantities of each denomination currently in the ATM.
 Display a transaction history of withdraw messages 
 (“Dispensed $<amount>” or failure “Insufficient Funds”).
+
+/ atm home/overview
+    - options: withdraw, restock
+    - Table of logs
+
+/withdraw 
+
+/ restock
