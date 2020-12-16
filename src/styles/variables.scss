@@ -1,1 +1,8 @@
+@import '~@angular/material/theming';
+
+// spacing
 $baseMargin: 3rem;
+
+
+// colors
+$backgroundColor: map-get($mat-grey, 200);

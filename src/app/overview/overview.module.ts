@@ -3,13 +3,15 @@ import { CommonModule } from '@angular/common';
 
 import { OverviewRoutingModule } from './overview-routing.module';
 import { OverviewComponent } from './overview.component';
-
+import { MatCardModule } from '@angular/material/card'; 
 
 @NgModule({
   declarations: [OverviewComponent],
   imports: [
     CommonModule,
-    OverviewRoutingModule
+    OverviewRoutingModule,
+
+    MatCardModule
   ],
   exports: [OverviewComponent]
 })

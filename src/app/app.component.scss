@@ -10,4 +10,10 @@
     button {
         margin-right: $baseMargin;
     }
+
+    main {
+        margin: $baseMargin auto;
+        max-width: 70%;
+        
+    }
 }
