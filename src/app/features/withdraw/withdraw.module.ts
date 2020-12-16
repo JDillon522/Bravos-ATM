@@ -5,14 +5,29 @@ import { WithdrawRoutingModule } from './withdraw-routing.module';
 import { WithdrawComponent } from './component/withdraw.component';
 
 import { MatCardModule } from '@angular/material/card';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CurrencyMaskModule } from 'ng2-currency-mask';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [WithdrawComponent],
   imports: [
     CommonModule,
     WithdrawRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
 
-    MatCardModule
+    MatCardModule,
+    MatInputModule,
+    MatIconModule,
+    MatButtonModule,
+    CurrencyMaskModule,
+
+    SharedModule
   ],
   exports: [WithdrawComponent]
 })

@@ -1,9 +1,23 @@
 <mat-card>
     <mat-card-header>
         <mat-card-title>Withdraw Funds</mat-card-title>
-        <mat-card-subtitle>The faceless men are watching you.</mat-card-subtitle>
+        <mat-card-subtitle>The Faceless Men are watching you. Defaulting is not an option.</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
 
+        <form [formGroup]="form">
+            <mat-form-field appearance="outline">
+                <mat-label>Amount</mat-label>
+                <input matInput currencyMask [options]="{ align: 'right', allowNegative: false}" placeholder="Amount" formControlName="amount" type="text">
+                <!-- <mat-icon matPrefix>attach_money</mat-icon> -->
+                <mat-hint>In multiples of $1.00</mat-hint>
+                <mat-error *ngIf="form.errors?.required">Please enter a valid amount</mat-error>
+                <mat-error *ngIf="form.errors?.min">Amount must be at least $1.00</mat-error>
+            </mat-form-field>
+        </form>
+
     </mat-card-content>
+    <mat-card-actions align="end">
+        <button mat-raised-button color="primary">Withdraw</button>
+    </mat-card-actions>
 </mat-card>

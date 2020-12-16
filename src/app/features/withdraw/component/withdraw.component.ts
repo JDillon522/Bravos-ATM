@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'atm-withdraw',
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WithdrawComponent implements OnInit {
 
-  constructor() { }
+  public form: FormGroup = this.fb.group({
+    amount: this.fb.control(null, Validators.compose([
+      Validators.required,
+
+      // TODO: custom validator for denominations
+    ]))
+  });
+
+  constructor(
+    private fb: FormBuilder
+  ) { }
 
   ngOnInit(): void {
+
   }
 
 }
