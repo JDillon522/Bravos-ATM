@@ -6,6 +6,16 @@ Users should be able to withdraw cash and the ATM should be able to track bills 
 if it was able/unable to dispense the requested amount.The ATM needs to keep track of the current quantities of each of
 its denominations.The ATM needs to keep track of each transaction that happens.
 
+## Current Test Coverage
+```
+=============================== Coverage summary ===============================
+Statements   : 90.3% ( 121/134 )
+Branches     : 72.22% ( 13/18 )
+Functions    : 84.62% ( 33/39 )
+Lines        : 89.6% ( 112/125 )
+================================================================================
+```
+
 ## Application Pages
 ### Withdraw Page
 - DONE - Users should be able to enter a dollar amount and press a withdraw button when desired dollar amount has been entered.
