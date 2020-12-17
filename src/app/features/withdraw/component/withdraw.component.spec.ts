@@ -46,6 +46,12 @@ describe('WithdrawComponent', () => {
     fixture.detectChanges();
   });
 
+  it('ngOnDestroy - Should unsubscribe to subscriptions', () => {
+    spyOn(component['subscriptions'], 'unsubscribe');
+    component.ngOnDestroy();
+    expect(component['subscriptions'].unsubscribe).toHaveBeenCalled();
+  });
+
   it('Should create the form', () => {
     expect(component.form).toBeTruthy();
   });

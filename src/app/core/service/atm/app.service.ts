@@ -28,7 +28,6 @@ export class ATMService {
 
   public withdrawCash(amount: number): Observable<Transaction | Error> {
     const necessaryDenominations: Cash = this.calculateDenomination(amount);
-    // TODO in the real world find a way to flatten observables to handle concurrent transactions
     this._denominationsOnHandState = this.adjustState(necessaryDenominations, this._denominationsOnHandState, 'withdraw');
     this.denominationsOnHand$.next(this._denominationsOnHandState);
     this._totalCashOnHandState -= amount;
@@ -72,7 +71,6 @@ export class ATMService {
       ones: 0
     };
 
-    // TODO handle restock at the same time
     function denomination(level: CashIndexes): void {
       if (amount >= CashValuesByIndex[level]) {
         denominationBreakdown[level]++;
@@ -107,22 +105,4 @@ export class ATMService {
     return state;
   }
 
-  private pickNextSmallestDenomination(level: CashIndexes): CashIndexes {
-    switch (level) {
-      case 'hundreds':
-        return 'fifties';
-
-      case 'fifties':
-        return 'twenties';
-
-      case 'twenties':
-        return 'tens';
-
-      case 'tens':
-        return 'fives';
-
-      default:
-        return 'ones';
-    }
-  }
 }

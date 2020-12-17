@@ -7,6 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Cash } from 'src/app/core/models/cash';
 
 import { RestockComponent } from './restock.component';
 
@@ -41,6 +42,12 @@ describe('RestockComponent', () => {
     fixture = TestBed.createComponent(RestockComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+  });
+
+  it('ngOnDestroy - Should unsubscribe to subscriptions', () => {
+    spyOn(component['subscriptions'], 'unsubscribe');
+    component.ngOnDestroy();
+    expect(component['subscriptions'].unsubscribe).toHaveBeenCalled();
   });
 
   it('Should create the form', () => {
@@ -82,4 +89,31 @@ describe('RestockComponent', () => {
 
     expect(component.restockCash).not.toHaveBeenCalled();
   }));
+
+  it('restockCash() - Should handle subscription and call handleRestock', () => {
+    spyOn(component['subscriptions'], 'add');
+
+    component.form.get('100')?.setValue(1);
+    component.restockCash();
+
+    expect(component['subscriptions'].add).toHaveBeenCalled();
+  });
+
+  /*
+    TODO: Fix test
+    TypeError: Cannot read property 'subscribe' of undefined
+            at RestockComponent.handleRestock (src/app/features/restock/component/restock.component.ts:66:64)
+            at UserContext.<anonymous> (src/app/features/restock/component/restock.component.spec.ts:109:31)
+  */
+  // it('handleRestock() - Should correctly restock cash and notify user', () => {
+  //   const cash: Cash = {
+  //     ...component.form.getRawValue(),
+  //   };
+
+  //   spyOn(component['atmService'], 'restockCash');
+
+  //   component['handleRestock'](cash);
+
+  //   expect(component['atmService'].restockCash).toHaveBeenCalled();
+  // });
 });

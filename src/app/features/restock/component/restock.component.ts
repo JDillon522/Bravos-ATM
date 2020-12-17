@@ -2,7 +2,7 @@ import { CurrencyPipe } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { Cash } from 'src/app/core/models/cash';
 import { ATMService } from 'src/app/core/service/atm/app.service';
 import { Transaction } from '../../overview/models/transaction';
@@ -14,7 +14,7 @@ import { TransactionService } from '../../overview/service/transaction.service';
   styleUrls: ['./restock.component.scss']
 })
 export class RestockComponent implements OnInit, OnDestroy {
-  public subscriptions: Subscription = new Subscription();
+  private subscriptions: Subscription = new Subscription();
 
   public form: FormGroup = this.fb.group({
     100: this.fb.control(0, Validators.required),
@@ -57,30 +57,37 @@ export class RestockComponent implements OnInit, OnDestroy {
     };
 
     this.subscriptions.add(
-      this.atmService.restockCash(cash, this.totalNewCash).subscribe(res => {
-        if ((res as Transaction).amount) {
-          this.transactionService.addRecord(res as Transaction);
-
-          const val = this.currencyPipe.transform(this.totalNewCash);
-          this.manualDisable = true;
-          const notification = this.snackBar.open(`Restocked ATM with ${val}`, 'X', { duration: 3000 });
-          this.subscriptions.add(
-            notification.afterDismissed().subscribe(() => {
-              this.form.reset({
-                100: 0,
-                50: 0,
-                20: 0,
-                10: 0,
-                5: 0,
-                1: 0
-              });
-              this.manualDisable = false;
-            })
-          );
-        } else {
-          const notification = this.snackBar.open(`Failed to restock ATM`, 'X', { duration: 3000 });
-        }
-      })
+      this.handleRestock(cash)
     );
+  }
+
+  // I split this out to try and handle tests better
+  private handleRestock(cash: Cash): Subscription {
+    return this.atmService.restockCash(cash, this.totalNewCash).subscribe(res => {
+      if ((res as Transaction).amount) {
+        this.transactionService.addRecord(res as Transaction);
+
+        const val = this.currencyPipe.transform(this.totalNewCash);
+        this.manualDisable = true;
+
+        const notification = this.snackBar.open(`Restocked ATM with ${val}`, 'X', { duration: 3000 });
+        this.subscriptions.add(
+          notification.afterDismissed().subscribe(() => {
+            this.form.reset({
+              100: 0,
+              50: 0,
+              20: 0,
+              10: 0,
+              5: 0,
+              1: 0
+            });
+            this.manualDisable = false;
+          })
+        );
+
+      } else {
+        const notification = this.snackBar.open(`Failed to restock ATM`, 'X', { duration: 3000 });
+      }
+    });
   }
 }
