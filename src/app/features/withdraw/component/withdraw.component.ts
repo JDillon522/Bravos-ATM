@@ -3,7 +3,9 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs';
+import { Cash } from 'src/app/core/models/cash';
 import { ATMService } from 'src/app/core/service/atm/app.service';
+import { TransactionService } from '../../overview/service/transaction.service';
 import { minQty } from '../shared/customValidators/minQty.ts/minQty';
 
 @Component({
@@ -28,7 +30,8 @@ export class WithdrawComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private atmService: ATMService,
     private snackBar: MatSnackBar,
-    private currencyPipe: CurrencyPipe
+    private currencyPipe: CurrencyPipe,
+    private transactionService: TransactionService
   ) { }
 
   ngOnInit(): void {
@@ -42,7 +45,9 @@ export class WithdrawComponent implements OnInit, OnDestroy {
   public withdrawCash(): void {
     this.subscriptions.add(
       this.atmService.withdrawCash(this.amountControl.value).subscribe(res => {
-        if (res === true) {
+        if ((res as Cash).total) {
+          this.transactionService.addRecord(res as Cash, 'withdraw');
+
           const val = this.currencyPipe.transform(this.amountControl.value);
           const notification = this.snackBar.open(`You successfully withdrew ${val}`, 'X', { duration: 3000 });
           this.subscriptions.add(

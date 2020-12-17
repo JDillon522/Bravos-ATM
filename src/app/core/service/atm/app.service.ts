@@ -23,13 +23,13 @@ export class ATMService {
 
   constructor() { }
 
-  public withdrawCash(amount: number): Observable<boolean | string> {
+  public withdrawCash(amount: number): Observable<Cash | Error> {
     const necessaryDenominations = this.calculateDenomination(amount);
     // TODO in the real world find a way to flatten observables to handle concurrent transactions
     this._cashOnHandState = this.adjustState(necessaryDenominations, this._cashOnHandState, 'withdraw');
     this.cashOnHand$.next(this._cashOnHandState);
 
-    return of(true);
+    return of(necessaryDenominations);
 
     // TODO handle error case
   }

@@ -8,7 +8,7 @@ export const dummyTransactions: Transaction[] = [
   {
     time: new Date().toDateString(),
     amount: 35,
-    type: 'withdrawal',
+    type: 'withdraw',
     denominations: {
       total: 35,
       hundreds: 0,
@@ -21,7 +21,7 @@ export const dummyTransactions: Transaction[] = [
   },
   {
     time: new Date().toDateString(),
-    type: 'withdrawal',
+    type: 'withdraw',
     amount: 63,
     denominations: {
       total: 63,
