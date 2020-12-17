@@ -3,8 +3,10 @@ import { BehaviorSubject, Observable, of } from 'rxjs';
 import { Cash, CashIndexes, CashValuesByIndex } from '../../models/cash';
 
 const seedStartAmount: number = 10;
+export const startingTotal: number = 1860;
 export const cashOnHandSeed: Cash = {
-  total: 1860,
+  total: startingTotal,
+  adjustedCashOnHand: 0,
   hundreds: seedStartAmount,
   fifties: seedStartAmount,
   twenties: seedStartAmount,
@@ -37,6 +39,7 @@ export class ATMService {
   public calculateDenomination(amount: number): Cash {
     const denominationBreakdown: Cash = {
       total: amount,
+      adjustedCashOnHand: this._cashOnHandState.total - amount,
       hundreds: 0,
       fifties: 0,
       twenties: 0,

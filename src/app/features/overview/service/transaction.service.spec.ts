@@ -9,7 +9,9 @@ export const dummyTransactions: Transaction[] = [
     time: new Date().toDateString(),
     amount: 35,
     type: 'withdraw',
+    adjustedCashOnHandAmount: 1223,
     denominations: {
+      adjustedCashOnHand: 0,
       total: 35,
       hundreds: 0,
       fifties: 0,
@@ -23,7 +25,9 @@ export const dummyTransactions: Transaction[] = [
     time: new Date().toDateString(),
     type: 'withdraw',
     amount: 63,
+    adjustedCashOnHandAmount: 1223,
     denominations: {
+      adjustedCashOnHand: 0,
       total: 63,
       hundreds: 0,
       fifties: 1,
@@ -37,7 +41,9 @@ export const dummyTransactions: Transaction[] = [
     time: new Date().toDateString(),
     type: 'restock',
     amount: 128,
+    adjustedCashOnHandAmount: 1223,
     denominations: {
+      adjustedCashOnHand: 0,
       total: 128,
       hundreds: 0,
       fifties: 2,

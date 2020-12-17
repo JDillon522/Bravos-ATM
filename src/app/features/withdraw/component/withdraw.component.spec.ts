@@ -1,9 +1,11 @@
+import { CurrencyPipe } from '@angular/common';
 import { async, ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { SharedModule } from 'src/app/shared/shared.module';
@@ -26,9 +28,13 @@ describe('WithdrawComponent', () => {
         MatInputModule,
         MatIconModule,
         MatButtonModule,
+        MatSnackBarModule,
         CurrencyMaskModule,
 
         SharedModule
+      ],
+      providers: [
+        CurrencyPipe
       ]
     })
     .compileComponents();

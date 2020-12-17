@@ -16,6 +16,7 @@ export class TransactionService {
   public addRecord(data: Cash, action: 'withdraw' | 'restock' ): Observable<boolean> {
     this._state.push({
       amount: data.total,
+      adjustedCashOnHandAmount: data.adjustedCashOnHand,
       time: new Date().toDateString(),
       type: action,
       denominations: data

@@ -25,6 +25,11 @@
                 <th mat-header-cell *matHeaderCellDef> Amount </th>
                 <td mat-cell *matCellDef="let row"> {{row.amount | currency}} </td>
             </ng-container>
+
+            <ng-container matColumnDef="adjustedCashOnHandAmount">
+                <th mat-header-cell *matHeaderCellDef> Cash On Hand </th>
+                <td mat-cell *matCellDef="let row"> {{row.adjustedCashOnHandAmount | currency}} </td>
+            </ng-container>
         </table>
 
         <p *ngIf="!transactionData.data.length">There are no current records of withdraws or restocks</p>

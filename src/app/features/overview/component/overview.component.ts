@@ -12,7 +12,7 @@ import { TransactionService } from '../service/transaction.service';
 export class OverviewComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription = new Subscription();
   public transactionData: MatTableDataSource<Transaction> = new MatTableDataSource<Transaction>();
-  public recordsColumns: string[] = ['time', 'type', 'amount'];
+  public recordsColumns: string[] = ['time', 'type', 'amount', 'adjustedCashOnHandAmount'];
 
   constructor(
     private transactionService: TransactionService
