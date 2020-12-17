@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, CurrencyPipe } from '@angular/common';
 
 import { WithdrawRoutingModule } from './withdraw-routing.module';
 import { WithdrawComponent } from './component/withdraw.component';
@@ -12,6 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [WithdrawComponent],
@@ -25,10 +26,15 @@ import { MatButtonModule } from '@angular/material/button';
     MatInputModule,
     MatIconModule,
     MatButtonModule,
+    MatSnackBarModule,
     CurrencyMaskModule,
+
 
     SharedModule
   ],
-  exports: [WithdrawComponent]
+  exports: [WithdrawComponent],
+  providers: [
+    CurrencyPipe
+  ]
 })
 export class WithdrawModule { }

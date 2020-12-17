@@ -3,10 +3,19 @@
     <mat-icon>account_balance</mat-icon> Welcome to the Bank of Bravos ATM
   </mat-toolbar-row>
 
-  <mat-toolbar-row>
+  <mat-toolbar-row id="nav">
     <button mat-raised-button color=accent routerLink="/" routerLinkActive="active">Overview</button>
     <button mat-raised-button color=accent routerLink="/withdraw" routerLinkActive="active">Withdraw Funds</button>
     <button mat-raised-button color=accent routerLink="/restock" routerLinkActive="active">Restock ATM</button>
+  </mat-toolbar-row>
+  <mat-toolbar-row id="cashOnHand">
+    <h3>Cash on Hand: {{cashOnHand.total | currency}}</h3>
+    <span>$100.00: {{cashOnHand.hundreds}}</span>
+    <span>$50.00: {{cashOnHand.fifties}}</span>
+    <span>$20.00: {{cashOnHand.twenties}}</span>
+    <span>$10.00: {{cashOnHand.tens}}</span>
+    <span>$5.00: {{cashOnHand.fives}}</span>
+    <span>$1.00: {{cashOnHand.ones}}</span>
   </mat-toolbar-row>
 </mat-toolbar>
 

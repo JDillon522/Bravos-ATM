@@ -10,6 +10,7 @@ export const dummyTransactions: Transaction[] = [
     amount: 35,
     type: 'withdrawal',
     denominations: {
+      total: 35,
       hundreds: 0,
       fifties: 0,
       twenties: 1,
@@ -23,6 +24,7 @@ export const dummyTransactions: Transaction[] = [
     type: 'withdrawal',
     amount: 63,
     denominations: {
+      total: 63,
       hundreds: 0,
       fifties: 1,
       twenties: 0,
@@ -36,6 +38,7 @@ export const dummyTransactions: Transaction[] = [
     type: 'restock',
     amount: 128,
     denominations: {
+      total: 128,
       hundreds: 0,
       fifties: 2,
       twenties: 0,

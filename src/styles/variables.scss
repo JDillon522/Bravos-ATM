@@ -2,7 +2,8 @@
 
 // spacing
 $baseMargin: 3rem;
-
+$maxWidth: 750px;
+$minWidth: 300px;
 
 // colors
 $backgroundColor: map-get($mat-grey, 200);

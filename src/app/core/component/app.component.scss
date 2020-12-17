@@ -3,20 +3,37 @@
 :host {
     mat-toolbar {
         mat-toolbar-row {
-            max-width: 70%;
-            min-width: 600px;
+            max-width: $maxWidth;
+            min-width: $minWidth;
             margin: 0 auto;
-        }
-    }
+            height: fit-content;
 
-    button {
-        margin-right: $baseMargin;
+            &#nav, &#cashOnHand {
+                display: flex;
+                flex-wrap: wrap;
+            }
+
+            &#nav {
+                button {
+                    margin-right: $baseMargin;
+                }
+            }
+
+            &#cashOnHand {
+                h3 {
+                    width: 100%;
+                }
+                span {
+                    margin-right: calc(#{$baseMargin}/2);
+                }
+            }
+        }
     }
 
     main {
         margin: $baseMargin auto;
-        max-width: 750px;
-        min-width: 300px;
+        max-width: $maxWidth;
+        min-width: $minWidth;
     }
 
     .todo {
