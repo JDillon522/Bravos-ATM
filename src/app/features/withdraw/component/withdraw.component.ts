@@ -3,11 +3,11 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs';
-import { Cash } from 'src/app/core/models/cash';
 import { ATMService } from 'src/app/core/service/atm/app.service';
+import { DoesntExceedOnHand } from 'src/app/shared/customValidators/doesntExceedOnHand/doesntExceedOnHand';
+import { minQty } from 'src/app/shared/customValidators/minQty.ts/minQty';
 import { Transaction } from '../../overview/models/transaction';
 import { TransactionService } from '../../overview/service/transaction.service';
-import { minQty } from '../shared/customValidators/minQty.ts/minQty';
 
 @Component({
   selector: 'atm-withdraw',
@@ -17,10 +17,13 @@ import { minQty } from '../shared/customValidators/minQty.ts/minQty';
 export class WithdrawComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription = new Subscription();
   public form: FormGroup = this.fb.group({
-    amount: this.fb.control(null, Validators.compose([
-      Validators.required,
-      minQty(1)
-    ]))
+    amount: this.fb.control(null,
+                            Validators.compose([
+                              Validators.required,
+                              minQty(1)
+                            ]),
+                            this.doesntExceedOnHand.validate.bind(this.doesntExceedOnHand)
+                          )
   });
 
   get amountControl(): FormControl {
@@ -32,7 +35,8 @@ export class WithdrawComponent implements OnInit, OnDestroy {
     private atmService: ATMService,
     private snackBar: MatSnackBar,
     private currencyPipe: CurrencyPipe,
-    private transactionService: TransactionService
+    private transactionService: TransactionService,
+    private doesntExceedOnHand: DoesntExceedOnHand
   ) { }
 
   ngOnInit(): void {
