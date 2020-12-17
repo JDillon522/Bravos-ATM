@@ -12,12 +12,12 @@ Withdraw Page
 DONE - Users should be able to enter a dollar amount and press a withdraw button when desired dollar amount has been entered.
 DONE - Withdraw button should remain disabled until the user enters an amount.
 PARTIAL - Once with withdrawn button is pressed, display message whether or not transaction was successful (“Dispensed $<amount>” or failure “Insufficient Funds”).
-
+    - I currently validate against withdrawing more than on hand. Can be changed
 
 Restock Page
 DONE - User should be able to enter quantities for each of the following denominations: $100, $50, $20, $10, $5, $1.
-Once the restock button is pressed, the total quantity of each denomination should be updated.
-Once the restock button is pressed, display a successful message to the user.
+DONE - Once the restock button is pressed, the total quantity of each denomination should be updated.
+DONE - Once the restock button is pressed, display a successful message to the user.
 
 
 ATM Overview Page
