@@ -10,14 +10,18 @@ import { ATMService, cashOnHandSeed } from '../service/atm/app.service';
 })
 export class AppComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription = new Subscription();
-  public cashOnHand: Cash = cashOnHandSeed;
+  public denomOnHand: Cash = cashOnHandSeed;
+  public cashOnHand: number = 0;
 
   constructor(private atmService: ATMService) {
   }
 
   ngOnInit(): void {
     this.subscriptions.add(
-      this.atmService.cashOnHand$.subscribe(cash => this.cashOnHand = cash)
+      this.atmService.denominationsOnHand$.subscribe(denom => this.denomOnHand = denom)
+    );
+    this.subscriptions.add(
+      this.atmService.totalCashOnHand$.subscribe(cash => this.cashOnHand = cash)
     );
   }
 

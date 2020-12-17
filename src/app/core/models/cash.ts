@@ -1,6 +1,4 @@
 export interface Cash {
-    total: number;
-    adjustedCashOnHand: number;
     hundreds: number;
     fifties: number;
     twenties: number;
@@ -11,8 +9,6 @@ export interface Cash {
 
 export type CashIndexes = 'hundreds' | 'fifties' | 'twenties' | 'tens' | 'fives' | 'ones';
 export const CashValuesByIndex: Cash = {
-    total: 0,
-    adjustedCashOnHand: 0,
     hundreds: 100,
     fifties: 50,
     twenties: 20,

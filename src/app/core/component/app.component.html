@@ -9,13 +9,13 @@
     <button mat-raised-button color=accent routerLink="/restock" routerLinkActive="active">Restock ATM</button>
   </mat-toolbar-row>
   <mat-toolbar-row id="cashOnHand">
-    <h3>Cash on Hand: {{cashOnHand.total | currency}}</h3>
-    <span>$100.00: {{cashOnHand.hundreds}}</span>
-    <span>$50.00: {{cashOnHand.fifties}}</span>
-    <span>$20.00: {{cashOnHand.twenties}}</span>
-    <span>$10.00: {{cashOnHand.tens}}</span>
-    <span>$5.00: {{cashOnHand.fives}}</span>
-    <span>$1.00: {{cashOnHand.ones}}</span>
+    <h3>Cash on Hand: {{cashOnHand | currency}}</h3>
+    <span>$100.00: {{denomOnHand.hundreds}}</span>
+    <span>$50.00: {{denomOnHand.fifties}}</span>
+    <span>$20.00: {{denomOnHand.twenties}}</span>
+    <span>$10.00: {{denomOnHand.tens}}</span>
+    <span>$5.00: {{denomOnHand.fives}}</span>
+    <span>$1.00: {{denomOnHand.ones}}</span>
   </mat-toolbar-row>
 </mat-toolbar>
 

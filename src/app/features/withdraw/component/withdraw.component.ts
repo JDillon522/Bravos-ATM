@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs';
 import { Cash } from 'src/app/core/models/cash';
 import { ATMService } from 'src/app/core/service/atm/app.service';
+import { Transaction } from '../../overview/models/transaction';
 import { TransactionService } from '../../overview/service/transaction.service';
 import { minQty } from '../shared/customValidators/minQty.ts/minQty';
 
@@ -45,16 +46,18 @@ export class WithdrawComponent implements OnInit, OnDestroy {
   public withdrawCash(): void {
     this.subscriptions.add(
       this.atmService.withdrawCash(this.amountControl.value).subscribe(res => {
-        if ((res as Cash).total) {
-          this.transactionService.addRecord(res as Cash, 'withdraw');
+        if ((res as Transaction).amount) {
+          this.transactionService.addRecord(res as Transaction);
 
           const val = this.currencyPipe.transform(this.amountControl.value);
-          const notification = this.snackBar.open(`You successfully withdrew ${val}`, 'X', { duration: 3000 });
+          const notification = this.snackBar.open(`Dispensed ${val}`, 'X', { duration: 3000 });
           this.subscriptions.add(
             notification.afterDismissed().subscribe(() => {
               this.amountControl.reset(null);
             })
           );
+        } else {
+          const notification = this.snackBar.open(`Insufficient Funds`, 'X', { duration: 3000 });
         }
 
       })

@@ -11,8 +11,6 @@ export const dummyTransactions: Transaction[] = [
     type: 'withdraw',
     adjustedCashOnHandAmount: 1223,
     denominations: {
-      adjustedCashOnHand: 0,
-      total: 35,
       hundreds: 0,
       fifties: 0,
       twenties: 1,
@@ -27,8 +25,6 @@ export const dummyTransactions: Transaction[] = [
     amount: 63,
     adjustedCashOnHandAmount: 1223,
     denominations: {
-      adjustedCashOnHand: 0,
-      total: 63,
       hundreds: 0,
       fifties: 1,
       twenties: 0,
@@ -43,8 +39,6 @@ export const dummyTransactions: Transaction[] = [
     amount: 128,
     adjustedCashOnHandAmount: 1223,
     denominations: {
-      adjustedCashOnHand: 0,
-      total: 128,
       hundreds: 0,
       fifties: 2,
       twenties: 0,

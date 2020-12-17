@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
+import { Transaction } from 'src/app/features/overview/models/transaction';
 import { Cash, CashIndexes, CashValuesByIndex } from '../../models/cash';
 
 const seedStartAmount: number = 10;
 export const startingTotal: number = 1860;
 export const cashOnHandSeed: Cash = {
-  total: startingTotal,
-  adjustedCashOnHand: 0,
   hundreds: seedStartAmount,
   fifties: seedStartAmount,
   twenties: seedStartAmount,
@@ -19,27 +18,36 @@ export const cashOnHandSeed: Cash = {
   providedIn: 'root'
 })
 export class ATMService {
-  private _cashOnHandState: Cash = cashOnHandSeed;
-  public cashOnHand$: BehaviorSubject<Cash> = new BehaviorSubject<Cash>(this._cashOnHandState);
+  private _denominationsOnHandState: Cash = cashOnHandSeed;
+  private _totalCashOnHandState: number = startingTotal;
+  public totalCashOnHand$: BehaviorSubject<number> = new BehaviorSubject<number>(this._totalCashOnHandState);
+  public denominationsOnHand$: BehaviorSubject<Cash> = new BehaviorSubject<Cash>(this._denominationsOnHandState);
 
 
   constructor() { }
 
-  public withdrawCash(amount: number): Observable<Cash | Error> {
-    const necessaryDenominations = this.calculateDenomination(amount);
+  public withdrawCash(amount: number): Observable<Transaction | Error> {
+    const necessaryDenominations: Cash = this.calculateDenomination(amount);
     // TODO in the real world find a way to flatten observables to handle concurrent transactions
-    this._cashOnHandState = this.adjustState(necessaryDenominations, this._cashOnHandState, 'withdraw');
-    this.cashOnHand$.next(this._cashOnHandState);
+    this._denominationsOnHandState = this.adjustState(necessaryDenominations, this._denominationsOnHandState, 'withdraw');
+    this.denominationsOnHand$.next(this._denominationsOnHandState);
+    this._totalCashOnHandState -= amount;
+    this.totalCashOnHand$.next(this._totalCashOnHandState);
 
-    return of(necessaryDenominations);
+    const record: Transaction = {
+      amount: amount,
+      adjustedCashOnHandAmount: this._totalCashOnHandState,
+      type: 'withdraw',
+      time: new Date().toDateString(),
+      denominations: necessaryDenominations
+    };
+    return of(record);
 
     // TODO handle error case
   }
 
   public calculateDenomination(amount: number): Cash {
     const denominationBreakdown: Cash = {
-      total: amount,
-      adjustedCashOnHand: this._cashOnHandState.total - amount,
       hundreds: 0,
       fifties: 0,
       twenties: 0,

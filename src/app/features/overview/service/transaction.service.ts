@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
-import { Cash } from 'src/app/core/models/cash';
 import { Transaction } from '../models/transaction';
 
 
@@ -13,14 +12,8 @@ export class TransactionService {
 
   constructor() { }
 
-  public addRecord(data: Cash, action: 'withdraw' | 'restock' ): Observable<boolean> {
-    this._state.push({
-      amount: data.total,
-      adjustedCashOnHandAmount: data.adjustedCashOnHand,
-      time: new Date().toDateString(),
-      type: action,
-      denominations: data
-    });
+  public addRecord(record: Transaction ): Observable<boolean> {
+    this._state.push(record);
     this.transactionRecords$.next(this._state);
     return of(true);
     // TODO account for error state. Not sure how yet...
