@@ -1,8 +1,12 @@
+import { CurrencyPipe } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs';
 import { Cash } from 'src/app/core/models/cash';
 import { ATMService } from 'src/app/core/service/atm/app.service';
+import { Transaction } from '../../overview/models/transaction';
+import { TransactionService } from '../../overview/service/transaction.service';
 
 @Component({
   selector: 'atm-restock',
@@ -33,7 +37,10 @@ export class RestockComponent implements OnInit, OnDestroy {
 
   constructor(
     private fb: FormBuilder,
-    private atmService: ATMService
+    private atmService: ATMService,
+    private transactionService: TransactionService,
+    private currencyPipe: CurrencyPipe,
+    private snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
@@ -46,9 +53,24 @@ export class RestockComponent implements OnInit, OnDestroy {
   public restockCash(): void {
     const cash: Cash = {
       ...this.form.getRawValue(),
-      total: this.totalNewCash
     };
 
+    this.subscriptions.add(
+      this.atmService.restockCash(cash, this.totalNewCash).subscribe(res => {
+        if ((res as Transaction).amount) {
+          this.transactionService.addRecord(res as Transaction);
 
+          const val = this.currencyPipe.transform(this.totalNewCash);
+          const notification = this.snackBar.open(`Restocked ATM with ${val}`, 'X', { duration: 3000 });
+          this.subscriptions.add(
+            notification.afterDismissed().subscribe(() => {
+              this.form.reset(null);
+            })
+          );
+        } else {
+          const notification = this.snackBar.open(`Failed to restock ATM`, 'X', { duration: 3000 });
+        }
+      })
+    );
   }
 }

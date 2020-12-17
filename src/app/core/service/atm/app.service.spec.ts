@@ -27,7 +27,7 @@ describe('AppService', () => {
     service = TestBed.inject(ATMService);
   });
 
-  it('Withdraw cash with valid input should return Observable<Cash | Error>', fakeAsync(() => {
+  it('withdrawCash() - Withdraw cash with valid input should return Observable<Transaction | Error>', fakeAsync(() => {
     const den = clone(testDenominations);
     den.fifties = 1;
 
@@ -41,14 +41,29 @@ describe('AppService', () => {
     });
   }));
 
-  it('Calculates cash denomination breakdown correctly when withdrawing: 150', () => {
+  it('restockCash() - Restock cash with valid input should return Observable<Transaction | Error>', fakeAsync(() => {
+    const den = clone(testDenominations);
+    den.fifties = 1;
+
+    const tran = clone(testTransaction);
+    tran.amount = 50;
+    tran.denominations = den;
+    tran.type = 'restock';
+    tran.adjustedCashOnHandAmount += 50;
+
+    service.restockCash(den, 50).subscribe(res => {
+      expect(res).toEqual(tran);
+    });
+  }));
+
+  it('calculateDenomination() - Calculates cash denomination breakdown correctly when withdrawing: 150', () => {
     const den = clone(testDenominations);
     den.hundreds = 1;
     den.fifties = 1;
     expect(service.calculateDenomination(150)).toEqual(den);
   });
 
-  it('Calculates cash denomination breakdown correctly when withdrawing: 342', () => {
+  it('calculateDenomination() - Calculates cash denomination breakdown correctly when withdrawing: 342', () => {
     const den = clone(testDenominations);
     den.hundreds = 3;
     den.twenties = 2;
@@ -56,20 +71,20 @@ describe('AppService', () => {
     expect(service.calculateDenomination(342)).toEqual(den);
   });
 
-  it('Calculates cash denomination breakdown correctly when withdrawing: 3', () => {
+  it('calculateDenomination() - Calculates cash denomination breakdown correctly when withdrawing: 3', () => {
     const den = clone(testDenominations);
     den.ones = 3;
     expect(service.calculateDenomination(3)).toEqual(den);
   });
 
-  it('Calculates cash denomination breakdown correctly when withdrawing: 42', () => {
+  it('calculateDenomination() - Calculates cash denomination breakdown correctly when withdrawing: 42', () => {
     const den = clone(testDenominations);
     den.twenties = 2;
     den.ones = 2;
     expect(service.calculateDenomination(42)).toEqual(den);
   });
 
-  it('Adjusts cash on hand state correctly when withdrawing cash', () => {
+  it('adjustState() - Adjusts cash on hand state correctly when withdrawing cash', () => {
     const state = clone(testDenominations);
     state.hundreds = 3;
     state.twenties = 2;
@@ -86,7 +101,7 @@ describe('AppService', () => {
     expect(service.adjustState(withdrawDenominations, state, 'withdraw')).toEqual(expectedState);
   });
 
-  it('Adjusts cash on hand state correctly when restocking cash', () => {
+  it('adjustState() - Adjusts cash on hand state correctly when restocking cash', () => {
     const state = clone(testDenominations);
     state.hundreds = 3;
     state.twenties = 2;

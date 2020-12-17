@@ -46,6 +46,22 @@ export class ATMService {
     // TODO handle error case
   }
 
+  public restockCash(denom: Cash, totalNewCash: number): Observable<Transaction | Error> {
+    this._denominationsOnHandState = this.adjustState(denom, this._denominationsOnHandState, 'restock');
+    this.denominationsOnHand$.next(this._denominationsOnHandState);
+    this._totalCashOnHandState += totalNewCash;
+    this.totalCashOnHand$.next(this._totalCashOnHandState);
+
+    const record: Transaction = {
+      amount: totalNewCash,
+      adjustedCashOnHandAmount: this._totalCashOnHandState,
+      type: 'restock',
+      time: new Date().toDateString(),
+      denominations: denom
+    };
+    return of(record);
+  }
+
   public calculateDenomination(amount: number): Cash {
     const denominationBreakdown: Cash = {
       hundreds: 0,
