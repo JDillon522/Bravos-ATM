@@ -28,8 +28,11 @@ export class ATMService {
 
   public withdrawCash(amount: number): Observable<Transaction | Error> {
     const necessaryDenominations: Cash = this.calculateDenomination(amount);
+    console.log();
+
     this._denominationsOnHandState = this.adjustState(necessaryDenominations, this._denominationsOnHandState, 'withdraw');
     this.denominationsOnHand$.next(this._denominationsOnHandState);
+
     this._totalCashOnHandState -= amount;
     this.totalCashOnHand$.next(this._totalCashOnHandState);
 
@@ -48,6 +51,7 @@ export class ATMService {
   public restockCash(denom: Cash, totalNewCash: number): Observable<Transaction | Error> {
     this._denominationsOnHandState = this.adjustState(denom, this._denominationsOnHandState, 'restock');
     this.denominationsOnHand$.next(this._denominationsOnHandState);
+
     this._totalCashOnHandState += totalNewCash;
     this.totalCashOnHand$.next(this._totalCashOnHandState);
 
@@ -74,7 +78,6 @@ export class ATMService {
     function denomination(level: CashIndexes): void {
       if (amount >= CashValuesByIndex[level]) {
         denominationBreakdown[level]++;
-        // TODO handle insufficient denominations on hand
         amount -= CashValuesByIndex[level];
         denomination(level);
       }
@@ -94,6 +97,7 @@ export class ATMService {
     // TODO error handling when there is not enough cash on hand
     // TODO error handling when there are insufficient denominations to work
     for (const key in denominations) {
+
       if (action === 'withdraw') {
         state[key as keyof Cash] -= denominations[key as keyof Cash];
 

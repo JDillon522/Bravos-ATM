@@ -63,6 +63,7 @@ export class RestockComponent implements OnInit, OnDestroy {
 
   // I split this out to try and handle tests better
   private handleRestock(cash: Cash): Subscription {
+    console.log('CAsH', cash)
     return this.atmService.restockCash(cash, this.totalNewCash).subscribe(res => {
       if ((res as Transaction).amount) {
         this.transactionService.addRecord(res as Transaction);

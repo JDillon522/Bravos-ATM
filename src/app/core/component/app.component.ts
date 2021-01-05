@@ -18,7 +18,10 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subscriptions.add(
-      this.atmService.denominationsOnHand$.subscribe(denom => this.denomOnHand = denom)
+      this.atmService.denominationsOnHand$.subscribe(denom => {
+        this.denomOnHand = denom;
+        console.log(this.denomOnHand)
+      })
     );
     this.subscriptions.add(
       this.atmService.totalCashOnHand$.subscribe(cash => this.cashOnHand = cash)
