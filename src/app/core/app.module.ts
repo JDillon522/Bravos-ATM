@@ -11,6 +11,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 import { ATMService } from './service/atm/app.service';
 import { TransactionService } from '../features/overview/service/transaction.service';
+import { NgxsModule } from '@ngxs/store';
+import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin'
+import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
+import { AtmState } from '../store/state/atm.state';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -20,6 +25,12 @@ import { TransactionService } from '../features/overview/service/transaction.ser
     AppRoutingModule,
     BrowserAnimationsModule,
     RouterModule,
+
+    NgxsModule.forRoot([
+      AtmState
+    ]),
+    NgxsReduxDevtoolsPluginModule.forRoot(),
+    NgxsLoggerPluginModule.forRoot(),
 
     MatToolbarModule,
     MatIconModule,
