@@ -1,4 +1,6 @@
+import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
+import { ATMService } from 'src/app/core/service/atm/app.service';
 import { AddCash, WithdrawCash } from '../actions/atm.actions';
 import { AtmCash, cashOnHandSeed } from '../models/cash';
 
@@ -12,7 +14,16 @@ export interface AtmStateModel {
         cash: cashOnHandSeed
     }
 })
+@Injectable({
+    providedIn: 'root'
+})
 export class AtmState {
+
+    constructor(
+        private atmService: ATMService
+    ) {
+
+    }
     @Selector()
     static getAtmDenom(state: AtmStateModel): AtmCash {
         return state.cash;
@@ -49,14 +60,16 @@ export class AtmState {
     @Action(WithdrawCash)
     public withdrawCash({ getState, patchState }: StateContext<AtmStateModel>, { payload }: WithdrawCash): void {
         const state = getState().cash;
+        const cashByDenominations: AtmCash = this.atmService.calculateDenomination(payload);
+
         patchState({
             cash: {
-                hundreds: state.hundreds - payload.hundreds,
-                fifties: state.fifties - payload.fifties,
-                twenties: state.twenties - payload.twenties,
-                tens: state.tens - payload.tens,
-                fives: state.fives - payload.fives,
-                ones: state.ones - payload.ones
+                hundreds: state.hundreds - cashByDenominations.hundreds,
+                fifties: state.fifties - cashByDenominations.fifties,
+                twenties: state.twenties - cashByDenominations.twenties,
+                tens: state.tens - cashByDenominations.tens,
+                fives: state.fives - cashByDenominations.fives,
+                ones: state.ones - cashByDenominations.ones
             }
         });
     }

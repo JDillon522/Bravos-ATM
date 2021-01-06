@@ -10,5 +10,5 @@ export class AddCash {
 export class WithdrawCash {
     static readonly type = '[ATM] Withdraw Cash from the ATM';
 
-    constructor(public payload: AtmCash) { }
+    constructor(public payload: number) { }
 }
