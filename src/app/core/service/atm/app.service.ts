@@ -36,4 +36,16 @@ export class ATMService {
     return denominationBreakdown;
   }
 
+  public calculateCashFromDenominations(cash: AtmCash): number {
+    let total = 0;
+    total += cash.hundreds * 100;
+    total += cash.fifties * 50;
+    total += cash.twenties * 20;
+    total += cash.tens * 10;
+    total += cash.fives * 5;
+    total += cash.ones;
+
+    return total;
+  }
+
 }
