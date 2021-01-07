@@ -7,3 +7,9 @@ export interface Transaction {
     adjustedCashOnHandAmount: number;
     denominations: AtmCash;
 }
+
+export interface TransactionRequest {
+    type: 'withdraw' | 'restock';
+    amount: number;
+    denominations: AtmCash;
+}

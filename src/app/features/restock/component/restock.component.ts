@@ -2,8 +2,9 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngxs/store';
 import { Subscription } from 'rxjs';
+import { minQty } from 'src/app/shared/customValidators/minQty.ts/minQty';
 import { AddCash } from 'src/app/store/actions/atm.actions';
-import { AtmCash } from 'src/app/store/models/cash';
+import { AtmCash, CashIndexes, CashValuesByIndex } from 'src/app/store/models/cash';
 
 @Component({
   selector: 'atm-restock',
@@ -20,13 +21,13 @@ export class RestockComponent implements OnInit, OnDestroy {
     tens: this.fb.control(0, Validators.required),
     fives: this.fb.control(0, Validators.required),
     ones: this.fb.control(0, Validators.required)
-  });
+  }, minQty(1));
 
   get totalNewCash(): number {
     let total = 0;
     const form = this.form.getRawValue();
     for (const key in form) {
-      total += parseInt(key, 10) * form[key];
+      total += CashValuesByIndex[key as CashIndexes] * form[key];
     }
 
     return total;

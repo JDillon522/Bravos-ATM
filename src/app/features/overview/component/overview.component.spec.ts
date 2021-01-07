@@ -1,10 +1,13 @@
-import { async, ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
+import { CurrencyPipe } from '@angular/common';
+import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
-import { of } from 'rxjs';
-import { TransactionService } from '../service/transaction.service';
-import { dummyTransactions } from '../service/transaction.service.spec';
+import { NgxsModule } from '@ngxs/store';
+import { AtmState } from 'src/app/store/state/atm.state';
+import { NotifyState } from 'src/app/store/state/notify.state';
+import { TransactionState } from 'src/app/store/state/transaction.state';
 
 import { OverviewComponent } from './overview.component';
 
@@ -19,10 +22,18 @@ describe('OverviewComponent', () => {
       imports: [
         MatCardModule,
         MatTableModule,
-        MatIconModule
+        MatIconModule,
+
+        MatSnackBarModule,
+
+        NgxsModule.forRoot([
+          AtmState,
+          NotifyState,
+          TransactionState
+        ])
       ],
       providers: [
-        TransactionService
+        CurrencyPipe
       ]
     })
     .compileComponents();

@@ -11,8 +11,7 @@ import { WithdrawCash } from 'src/app/store/actions/atm.actions';
   templateUrl: './withdraw.component.html',
   styleUrls: ['./withdraw.component.scss']
 })
-export class WithdrawComponent implements OnInit, OnDestroy {
-  private subscriptions: Subscription = new Subscription();
+export class WithdrawComponent implements OnInit {
   public form: FormGroup = this.fb.group({
     amount: this.fb.control(null,
                             Validators.compose([
@@ -35,10 +34,6 @@ export class WithdrawComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
 
-  }
-
-  ngOnDestroy(): void {
-    this.subscriptions.unsubscribe();
   }
 
   public withdrawCash(): void {

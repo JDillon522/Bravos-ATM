@@ -10,7 +10,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 import { ATMService } from './service/atm/app.service';
-import { TransactionService } from '../features/overview/service/transaction.service';
 import { NgxsModule } from '@ngxs/store';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
@@ -18,6 +17,7 @@ import { AtmState } from '../store/state/atm.state';
 import { NotifyState } from '../store/state/notify.state';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { CurrencyPipe } from '@angular/common';
+import { TransactionState } from '../store/state/transaction.state';
 
 @NgModule({
   declarations: [
@@ -31,7 +31,8 @@ import { CurrencyPipe } from '@angular/common';
 
     NgxsModule.forRoot([
       AtmState,
-      NotifyState
+      NotifyState,
+      TransactionState
     ]),
     NgxsReduxDevtoolsPluginModule.forRoot(),
     NgxsLoggerPluginModule.forRoot(),
@@ -43,7 +44,6 @@ import { CurrencyPipe } from '@angular/common';
   ],
   providers: [
     ATMService,
-    TransactionService,
     CurrencyPipe
   ],
   bootstrap: [AppComponent]

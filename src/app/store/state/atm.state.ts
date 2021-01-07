@@ -4,6 +4,7 @@ import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
 import { ATMService } from 'src/app/core/service/atm/app.service';
 import { AddCash, WithdrawCash } from '../actions/atm.actions';
 import { SuccessMessage } from '../actions/notify.actions';
+import { RecordTransaction } from '../actions/transaction.actions';
 import { AtmCash, cashOnHandSeed } from '../models/cash';
 
 export interface AtmStateModel {
@@ -59,8 +60,13 @@ export class AtmState {
                 ones: state.ones + payload.ones
             }
         });
-
-        this.store.dispatch(new SuccessMessage(`Restocked ATM with: ${this.currencyPipe.transform(this.atmService.calculateCashFromDenominations(payload))}`));
+        const cashAmount = this.atmService.calculateCashFromDenominations(payload);
+        this.store.dispatch(new SuccessMessage(`Restocked ATM with: ${this.currencyPipe.transform(cashAmount)}`));
+        this.store.dispatch(new RecordTransaction({
+            amount: cashAmount,
+            denominations: payload,
+            type: 'restock'
+        }));
     }
 
     @Action(WithdrawCash)
@@ -80,5 +86,10 @@ export class AtmState {
         });
 
         this.store.dispatch(new SuccessMessage(`Dispensed ${this.currencyPipe.transform(payload)}`));
+        this.store.dispatch(new RecordTransaction({
+            amount: payload,
+            denominations: cashByDenominations,
+            type: 'withdraw'
+        }));
     }
 }
