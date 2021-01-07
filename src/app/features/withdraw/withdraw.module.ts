@@ -12,7 +12,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MatButtonModule } from '@angular/material/button';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [WithdrawComponent],
@@ -26,9 +25,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatInputModule,
     MatIconModule,
     MatButtonModule,
-    MatSnackBarModule,
     CurrencyMaskModule,
-
 
     SharedModule
   ],

@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { Cash } from '../models/cash';
-import { ATMService, cashOnHandSeed } from '../service/atm/app.service';
+import { Select } from '@ngxs/store';
+import { Observable } from 'rxjs';
+import { AtmCash } from 'src/app/store/models/cash';
+import { AtmState } from 'src/app/store/state/atm.state';
 
 @Component({
   selector: 'atm-root',
@@ -9,27 +10,18 @@ import { ATMService, cashOnHandSeed } from '../service/atm/app.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit, OnDestroy {
-  private subscriptions: Subscription = new Subscription();
-  public denomOnHand: Cash = cashOnHandSeed;
-  public cashOnHand: number = 0;
+  @Select(AtmState.getCashOnHand) cashOnHand$!: Observable<number>;
+  @Select(AtmState.getAtmDenom) denomOnHand$!: Observable<AtmCash>;
 
-  constructor(private atmService: ATMService) {
+  constructor( ) {
   }
 
   ngOnInit(): void {
-    this.subscriptions.add(
-      this.atmService.denominationsOnHand$.subscribe(denom => {
-        this.denomOnHand = denom;
-        console.log(this.denomOnHand)
-      })
-    );
-    this.subscriptions.add(
-      this.atmService.totalCashOnHand$.subscribe(cash => this.cashOnHand = cash)
-    );
+
   }
 
   ngOnDestroy(): void {
-    this.subscriptions.unsubscribe();
+
   }
 
 }

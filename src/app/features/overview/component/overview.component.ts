@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { Store } from '@ngxs/store';
 import { Subscription } from 'rxjs';
-import { Transaction } from '../models/transaction';
-import { TransactionService } from '../service/transaction.service';
+import { Transaction } from '../../../store/models/transaction';
 
 @Component({
   selector: 'atm-overview',
@@ -15,12 +15,12 @@ export class OverviewComponent implements OnInit, OnDestroy {
   public recordsColumns: string[] = ['time', 'type', 'amount', 'adjustedCashOnHandAmount'];
 
   constructor(
-    private transactionService: TransactionService
+    private store: Store
   ) { }
 
   ngOnInit(): void {
     this.subscriptions.add(
-      this.transactionService.transactionRecords$.subscribe(records => {
+      this.store.select(state => state.transaction.records).subscribe(records => {
         if (records) {
           this.transactionData.data = records;
         }

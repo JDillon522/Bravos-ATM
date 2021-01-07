@@ -1,5 +1,5 @@
 import { CurrencyPipe } from '@angular/common';
-import { async, ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -7,8 +7,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxsModule, Store } from '@ngxs/store';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { AtmState } from 'src/app/store/state/atm.state';
+import { NotifyState } from 'src/app/store/state/notify.state';
+import { TransactionState } from 'src/app/store/state/transaction.state';
 
 import { WithdrawComponent } from './withdraw.component';
 
@@ -31,7 +35,13 @@ describe('WithdrawComponent', () => {
         MatSnackBarModule,
         CurrencyMaskModule,
 
-        SharedModule
+        SharedModule,
+
+        NgxsModule.forRoot([
+          AtmState,
+          NotifyState,
+          TransactionState
+        ])
       ],
       providers: [
         CurrencyPipe
@@ -44,12 +54,6 @@ describe('WithdrawComponent', () => {
     fixture = TestBed.createComponent(WithdrawComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  });
-
-  it('ngOnDestroy - Should unsubscribe to subscriptions', () => {
-    spyOn(component['subscriptions'], 'unsubscribe');
-    component.ngOnDestroy();
-    expect(component['subscriptions'].unsubscribe).toHaveBeenCalled();
   });
 
   it('Should create the form', () => {

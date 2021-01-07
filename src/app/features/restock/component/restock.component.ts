@@ -1,12 +1,10 @@
-import { CurrencyPipe } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { Observable, Subscription } from 'rxjs';
-import { Cash } from 'src/app/core/models/cash';
-import { ATMService } from 'src/app/core/service/atm/app.service';
-import { Transaction } from '../../overview/models/transaction';
-import { TransactionService } from '../../overview/service/transaction.service';
+import { Store } from '@ngxs/store';
+import { Subscription } from 'rxjs';
+import { minQty } from 'src/app/shared/customValidators/minQty.ts/minQty';
+import { AddCash } from 'src/app/store/actions/atm.actions';
+import { AtmCash, CashIndexes, CashValuesByIndex } from 'src/app/store/models/cash';
 
 @Component({
   selector: 'atm-restock',
@@ -17,19 +15,19 @@ export class RestockComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription = new Subscription();
 
   public form: FormGroup = this.fb.group({
-    100: this.fb.control(0, Validators.required),
-    50: this.fb.control(0, Validators.required),
-    20: this.fb.control(0, Validators.required),
-    10: this.fb.control(0, Validators.required),
-    5: this.fb.control(0, Validators.required),
-    1: this.fb.control(0, Validators.required)
-  });
+    hundreds: this.fb.control(0, Validators.required),
+    fifties: this.fb.control(0, Validators.required),
+    twenties: this.fb.control(0, Validators.required),
+    tens: this.fb.control(0, Validators.required),
+    fives: this.fb.control(0, Validators.required),
+    ones: this.fb.control(0, Validators.required)
+  }, minQty(1));
 
   get totalNewCash(): number {
     let total = 0;
     const form = this.form.getRawValue();
     for (const key in form) {
-      total += parseInt(key, 10) * form[key];
+      total += CashValuesByIndex[key as CashIndexes] * form[key];
     }
 
     return total;
@@ -38,10 +36,7 @@ export class RestockComponent implements OnInit, OnDestroy {
 
   constructor(
     private fb: FormBuilder,
-    private atmService: ATMService,
-    private transactionService: TransactionService,
-    private currencyPipe: CurrencyPipe,
-    private snackBar: MatSnackBar
+    private store: Store
   ) { }
 
   ngOnInit(): void {
@@ -52,43 +47,12 @@ export class RestockComponent implements OnInit, OnDestroy {
   }
 
   public restockCash(): void {
-    const cash: Cash = {
-      ...this.form.getRawValue(),
+    const cash: AtmCash = {
+      ...this.form.getRawValue()
     };
 
-    this.subscriptions.add(
-      this.handleRestock(cash)
-    );
+    this.store.dispatch(new AddCash(cash));
   }
 
-  // I split this out to try and handle tests better
-  private handleRestock(cash: Cash): Subscription {
-    console.log('CAsH', cash)
-    return this.atmService.restockCash(cash, this.totalNewCash).subscribe(res => {
-      if ((res as Transaction).amount) {
-        this.transactionService.addRecord(res as Transaction);
 
-        const val = this.currencyPipe.transform(this.totalNewCash);
-        this.manualDisable = true;
-
-        const notification = this.snackBar.open(`Restocked ATM with ${val}`, 'X', { duration: 3000 });
-        this.subscriptions.add(
-          notification.afterDismissed().subscribe(() => {
-            this.form.reset({
-              100: 0,
-              50: 0,
-              20: 0,
-              10: 0,
-              5: 0,
-              1: 0
-            });
-            this.manualDisable = false;
-          })
-        );
-
-      } else {
-        const notification = this.snackBar.open(`Failed to restock ATM`, 'X', { duration: 3000 });
-      }
-    });
-  }
 }
