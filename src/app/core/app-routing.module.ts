@@ -15,6 +15,10 @@ const routes: Routes = [
     loadChildren: () => import('../features/restock/restock.module').then(m => m.RestockModule)
   },
   {
+    path: 'admin',
+    loadChildren: () => import('../features/admin/admin.module').then(m => m.AdminModule)
+  },
+  {
     path: '**',
     pathMatch: 'full',
     redirectTo: ''

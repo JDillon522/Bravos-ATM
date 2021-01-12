@@ -1,37 +1,15 @@
-<mat-card>
-    <mat-card-header>
-        <mat-card-title>Recent Withdraws and Restocks</mat-card-title>
-        <mat-card-subtitle>"The Iron Bank will have its due"</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>
-        <table mat-table [dataSource]="transactionData" *ngIf="transactionData.data.length">
-            <tr mat-header-row *matHeaderRowDef="recordsColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: recordsColumns"></tr>
 
-            <ng-container matColumnDef="time">
-                <th mat-header-cell *matHeaderCellDef> Time </th>
-                <td mat-cell *matCellDef="let row"> {{row.time}} </td>
-            </ng-container>
+<aside>
+    <p>Welcome</p>
+    <h2>Random User Name</h2>
+    <p>Account Balance</p>
+    <h2>$12344</h2>
+</aside>
 
-            <ng-container matColumnDef="type">
-                <th mat-header-cell *matHeaderCellDef>  </th>
-                <td mat-cell *matCellDef="let row">
-                    <mat-icon *ngIf="row.type === 'withdraw'" color="warn">remove</mat-icon>
-                    <mat-icon *ngIf="row.type === 'restock'" color="primary">add</mat-icon>
-                </td>
-            </ng-container>
+<nav>
+    <button mat-flat-button color="accent" routerLink="/withdraw">Get Cash</button>
+    <button mat-flat-button color="accent" routerLink="/restock">Deposit</button>
+    <button mat-flat-button color="accent" routerLink="/admin">Transaction History</button>
 
-            <ng-container matColumnDef="amount">
-                <th mat-header-cell *matHeaderCellDef> Amount </th>
-                <td mat-cell *matCellDef="let row"> {{row.amount | currency}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="adjustedCashOnHandAmount">
-                <th mat-header-cell *matHeaderCellDef> Cash On Hand </th>
-                <td mat-cell *matCellDef="let row"> {{row.adjustedCashOnHandAmount | currency}} </td>
-            </ng-container>
-        </table>
-
-        <p *ngIf="!transactionData.data.length">There are no current records of withdraws or restocks</p>
-    </mat-card-content>
-</mat-card>
+    <button mat-flat-button color="accent" class="quick-cash" [routerLink]="['/withdraw', {amount: '70'}]">Quick Cash <mat-icon>keyboard_arrow_right</mat-icon></button>
+</nav>

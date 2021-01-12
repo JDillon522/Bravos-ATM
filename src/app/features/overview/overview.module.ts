@@ -6,6 +6,7 @@ import { OverviewComponent } from './component/overview.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [OverviewComponent],
@@ -15,7 +16,8 @@ import { MatIconModule } from '@angular/material/icon';
 
     MatCardModule,
     MatTableModule,
-    MatIconModule
+    MatIconModule,
+    MatButtonModule
   ],
   exports: [OverviewComponent]
 })

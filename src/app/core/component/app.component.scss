@@ -1,46 +1,27 @@
 @import '../../../styles/variables.scss';
 
 :host {
-    mat-toolbar {
-        mat-toolbar-row {
-            max-width: $maxWidth;
-            min-width: $minWidth;
-            margin: 0 auto;
-            height: fit-content;
 
-            &#nav, &#cashOnHand {
-                display: flex;
-                flex-wrap: wrap;
-            }
-
-            &#nav {
-                button {
-                    margin-right: $baseMargin;
-                }
-            }
-
-            &#cashOnHand {
-                h3 {
-                    width: 100%;
-                }
-                span {
-                    margin-right: calc(#{$baseMargin}/2);
-                }
-            }
-        }
-    }
-
-    main {
+    header, main {
         margin: $baseMargin auto;
         max-width: $maxWidth;
         min-width: $minWidth;
     }
 
-    .todo {
-        display: none;
+    header {
+        height: 30px;
+        font-weight: bold;
+        display: flex;
+        justify-content: space-between;
 
-        @media (max-width: 599px) {
-            display: block;
+        h1 {
+            font-weight: bold;
+            color: white;
         }
     }
+
+    main {
+        min-height: 200px;
+    }
+
 }

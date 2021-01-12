@@ -1,4 +1,4 @@
-<mat-toolbar color="primary">
+<!-- <mat-toolbar color="primary">
   <mat-toolbar-row>
     <mat-icon>account_balance</mat-icon> Welcome to the Bank of Bravos ATM
   </mat-toolbar-row>
@@ -17,46 +17,14 @@
     <span>$5.00: {{(denomOnHand$ | async)?.fives}}</span>
     <span>$1.00: {{(denomOnHand$ | async)?.ones}}</span>
   </mat-toolbar-row>
-</mat-toolbar>
+</mat-toolbar> -->
+
+<header>
+  <h1>Bravos ATM</h1>
+  <button mat-flat-button color="primary">Exit and Return Card <mat-icon>credit_card</mat-icon></button>
+</header>
 
 <main>
+
   <router-outlet></router-outlet>
 </main>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="todo">
-  <h1>Question: What do we say to the god of death?</h1>
-  <h2>Answer: Mobile Responsiveness Comes Later</h2>
-</div>

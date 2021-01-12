@@ -1,11 +1,15 @@
 @import './variables.scss';
 
-html, body { 
-    height: 100%; 
+html, body {
+    height: 100%;
 }
-body { 
+body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
     display: block;
     background-color: $backgroundColor;
- }
+}
+
+button {
+    border-radius: 0;
+}
