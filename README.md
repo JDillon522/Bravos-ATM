@@ -9,10 +9,10 @@ its denominations.The ATM needs to keep track of each transaction that happens.
 ## Current Test Coverage
 ```
 =============================== Coverage summary ===============================
-Statements   : 90.3% ( 121/134 )
-Branches     : 72.22% ( 13/18 )
-Functions    : 84.62% ( 33/39 )
-Lines        : 89.6% ( 112/125 )
+Statements   : 91.1% ( 133/146 )
+Branches     : 93.75% ( 15/16 )
+Functions    : 76.09% ( 35/46 )
+Lines        : 90.37% ( 122/135 )
 ================================================================================
 ```
 
