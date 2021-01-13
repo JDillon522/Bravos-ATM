@@ -5,6 +5,7 @@
     display: flex;
     justify-content: space-between;
     min-height: 500px;
+    margin-top: calc(#{$baseMargin} * 2);
 
     p {
         color: $accent;
@@ -40,6 +41,13 @@
             width: 100%;
             height: 65px;
             margin-top: 1rem;
+
+            &::ng-deep {
+                .mat-button-wrapper span {
+                    margin-left: 50px;
+                }
+            }
+
         }
     }
 }

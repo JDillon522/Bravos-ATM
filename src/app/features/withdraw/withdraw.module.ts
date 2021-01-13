@@ -12,6 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MatButtonModule } from '@angular/material/button';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [WithdrawComponent],
@@ -25,6 +26,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatInputModule,
     MatIconModule,
     MatButtonModule,
+    MatGridListModule,
     CurrencyMaskModule,
 
     SharedModule

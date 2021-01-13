@@ -1,4 +1,4 @@
-<mat-card>
+<!-- <mat-card>
     <mat-card-header>
         <mat-card-title>Withdraw Funds</mat-card-title>
         <mat-card-subtitle>The Faceless Men are watching you. Defaulting is not an option.</mat-card-subtitle>
@@ -30,4 +30,78 @@
     <mat-card-actions align="end">
         <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="withdrawCash()">Withdraw</button>
     </mat-card-actions>
-</mat-card>
+</mat-card> -->
+
+<section class="form">
+    <mat-card>
+        <mat-card-content>
+            <h2>Please enter the amount you would like to withdraw and then touch Enter</h2>
+            <form [formGroup]="form">
+                <mat-form-field appearance="outline">
+                    <mat-label>Amount</mat-label>
+                    <input matInput
+                           currencyMask
+                           [options]="{
+                                align: 'right',
+                                allowNegative: false,
+                                precision: 0
+                            }"
+                            placeholder="Amount"
+                            formControlName="amount"
+                            type="text">
+
+                    <mat-hint>In multiples of $1.00</mat-hint>
+                    <mat-error *ngIf="amountControl.errors?.required">Please enter a valid amount</mat-error>
+                    <mat-error *ngIf="amountControl.errors?.min">Amount must be at least $1.00</mat-error>
+                    <mat-error *ngIf="amountControl.errors?.exceedsOnHand">Amount must be less than cash on hand</mat-error>
+                </mat-form-field>
+            </form>
+
+        </mat-card-content>
+
+        <mat-card-actions align="end">
+            <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="withdrawCash()">Enter</button>
+        </mat-card-actions>
+    </mat-card>
+
+</section>
+
+<section class="keypad">
+    <mat-grid-list cols="3" rowHeight="70px">
+        <mat-grid-tile>
+            <button mat-fab (click)="addValue('1')" color="accent">1</button>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <button mat-fab (click)="addValue('2')" color="accent">2</button>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <button mat-fab (click)="addValue('3')" color="accent">3</button>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <button mat-fab (click)="addValue('4')" color="accent">4</button>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <button mat-fab (click)="addValue('5')" color="accent">5</button>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <button mat-fab (click)="addValue('6')" color="accent">6</button>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <button mat-fab (click)="addValue('7')" color="accent">7</button>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <button mat-fab (click)="addValue('8')" color="accent">8</button>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <button mat-fab (click)="addValue('9')" color="accent">9</button>
+        </mat-grid-tile>
+        <mat-grid-tile class="zero-key">
+            <button mat-fab (click)="addValue('0')" color="accent">0</button>
+        </mat-grid-tile>
+        <mat-grid-tile class="delete-key">
+            <button mat-fab color="accent" [disabled]="amountControl.value < 1" (click)="reduceValue()">
+                <mat-icon>backspace</mat-icon>
+            </button>
+        </mat-grid-tile>
+    </mat-grid-list>
+</section>

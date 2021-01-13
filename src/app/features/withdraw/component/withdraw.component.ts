@@ -43,4 +43,22 @@ export class WithdrawComponent implements OnInit {
     // TODO handle insufficent funds
   }
 
+  public addValue(amount: string): void {
+    const val = (this.amountControl.value || 0).toString();
+    this.amountControl.setValue(parseInt(val + amount, 10));
+    this.amountControl.markAsTouched();
+  }
+
+  public reduceValue(): void {
+    const val = this.amountControl.value.toString();
+
+    if (val.length > 1) {
+      this.amountControl.setValue(parseInt(val.slice(0, -1), 10));
+
+    } else {
+      this.amountControl.reset(null);
+    }
+
+  }
+
 }

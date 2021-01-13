@@ -3,6 +3,7 @@ import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testin
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -19,6 +20,7 @@ import { WithdrawComponent } from './withdraw.component';
 describe('WithdrawComponent', () => {
   let component: WithdrawComponent;
   let fixture: ComponentFixture<WithdrawComponent>;
+  let store: Store;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -33,6 +35,7 @@ describe('WithdrawComponent', () => {
         MatIconModule,
         MatButtonModule,
         MatSnackBarModule,
+        MatGridListModule,
         CurrencyMaskModule,
 
         SharedModule,
@@ -54,6 +57,8 @@ describe('WithdrawComponent', () => {
     fixture = TestBed.createComponent(WithdrawComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+
+    store = TestBed.inject(Store);
   });
 
   it('Should create the form', () => {
@@ -104,4 +109,36 @@ describe('WithdrawComponent', () => {
 
     expect(component.withdrawCash).not.toHaveBeenCalled();
   }));
+
+  it('addValue() - Should add value when pressed', () => {
+    component.addValue('5');
+    expect(component.amountControl.value).toEqual(5);
+  });
+
+  it('addValue() - The form should be marked as "touched" after addValue() is called', () => {
+    component.addValue('5');
+    expect(component.amountControl.touched).toBe(true);
+  });
+
+  it('addValue() - Should add value when pressed multiple times', () => {
+    component.addValue('5');
+    component.addValue('2');
+    expect(component.amountControl.value).toEqual(52);
+  });
+
+  it('addValue() - Should add value when pressed after an input is manually entered', () => {
+    component.amountControl.setValue(25);
+    component.addValue('5');
+    component.addValue('2');
+    expect(component.amountControl.value).toEqual(2552);
+  });
+
+  it('reduceValue() - Should reduce value correctly', () => {
+    component.amountControl.setValue(123);
+    component.reduceValue();
+    expect(component.amountControl.value).toEqual(12);
+    component.reduceValue();
+    component.reduceValue();
+    expect(component.amountControl.value).toEqual(null);
+  });
 });

@@ -17,6 +17,18 @@
         h1 {
             font-weight: bold;
             color: white;
+            margin-top: 6px;
+        }
+
+        button {
+            font-size: 1.5rem;
+            height: 48px;
+
+            mat-icon {
+                font-size: 48px;
+                height: 48px;
+                width: 48px;
+            }
         }
     }
 

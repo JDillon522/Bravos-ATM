@@ -1,9 +1,58 @@
+@import "../../../../styles/variables.scss";
+
 :host {
-    mat-card {
-        mat-card-content {
-            form {
-                max-width: 200px;
-                margin-left: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: white;
+    flex-wrap: wrap;
+
+    section {
+        margin: $baseMargin auto;
+
+        &.form {
+            max-width: 500px;
+            min-width: 300px;
+
+            mat-card {
+                text-align: end;
+                height: 285px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: flex-end;
+
+                h2 {
+                    margin-bottom: 3rem;
+                }
+
+                mat-form-field {
+                    width: 250px;
+                }
+
+                mat-card-actions {
+                    width: 100%;
+
+                    button {
+                        width: 30%;
+                        min-width: 100px;
+                        font-size: 1.5rem;
+                        height: 50px;
+                    }
+                }
+            }
+        }
+
+        &.keypad {
+            width: 225px;
+            max-width: 225px;
+            height: 285px;
+
+            .zero-key {
+                left: calc((33.3333% - 0.666667px + 1px) * 1) !important;
+            }
+            .delete-key {
+                left: calc((33.3333% - 0.666667px + 1px) * 2) !important;
             }
         }
     }

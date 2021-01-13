@@ -3,7 +3,7 @@
     <p>Welcome</p>
     <h2>Random User Name</h2>
     <p>Account Balance</p>
-    <h2>$12344</h2>
+    <h2>{{cashOnHand$ | async | currency}}</h2>
 </aside>
 
 <nav>
@@ -11,5 +11,11 @@
     <button mat-flat-button color="accent" routerLink="/restock">Deposit</button>
     <button mat-flat-button color="accent" routerLink="/admin">Transaction History</button>
 
-    <button mat-flat-button color="accent" class="quick-cash" [routerLink]="['/withdraw', {amount: '70'}]">Quick Cash <mat-icon>keyboard_arrow_right</mat-icon></button>
+    <button mat-flat-button
+            color="accent"
+            class="quick-cash"
+            (click)="quickCash()"
+            [disabled]="(cashOnHand$ | async)! < quickCashAmount">
+                Quick Cash <span>{{quickCashAmount | currency}}</span> <mat-icon>keyboard_arrow_right</mat-icon>
+    </button>
 </nav>

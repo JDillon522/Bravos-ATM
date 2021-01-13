@@ -33,7 +33,7 @@ describe('OverviewComponent', () => {
         ])
       ],
       providers: [
-        CurrencyPipe
+
       ]
     })
     .compileComponents();
@@ -45,22 +45,9 @@ describe('OverviewComponent', () => {
     fixture.detectChanges();
   });
 
-  it('Should get transactions data from the service', waitForAsync(() => {
-    expect(component.transactionData.data).toEqual([]);
-  }));
+  // it('Should get transactions data from the service', waitForAsync(() => {
+  //   expect(component.transactionData.data).toEqual([]);
+  // }));
 
-  it('ngOnInit - Should subscribe to transactionRecords$', fakeAsync(() => {
-    spyOn(component['subscriptions'], 'add');
-    component.ngOnInit();
-    tick();
 
-    // Make sure the subscription is added to the subscriptions
-    expect(component['subscriptions'].add).toHaveBeenCalled();
-  }));
-
-  it('ngOnDestroy - Should unsubscribe to subscriptions', () => {
-    spyOn(component['subscriptions'], 'unsubscribe');
-    component.ngOnDestroy();
-    expect(component['subscriptions'].unsubscribe).toHaveBeenCalled();
-  });
 });
