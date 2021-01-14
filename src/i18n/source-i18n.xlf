@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="78f2ed8154475f8ebc11deb3e711be1fcab5b998" datatype="html">
+        <source>Bravos ATM</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/core/component/app.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+        <note priority="1" from="description">&apos;Bravos ATM&apos;, &apos;Bank of America ATM&apos;, etc</note>
+        <note priority="1" from="meaning">ATM Name</note>
+      </trans-unit>
+      <trans-unit id="092f70a1856d3d2a009738fe545b4c23ed4ce040" datatype="html">
+        <source> Exit and Return Card </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/core/component/app.component.html</context>
+          <context context-type="linenumber">9,10</context>
+        </context-group>
+        <note priority="1" from="description">Text to describe the act of returning the user&apos;s card and exiting the app</note>
+        <note priority="1" from="meaning">Quit ATM text</note>
+      </trans-unit>
+      <trans-unit id="05d47234331fb52d1eefe750deb8d3e8a7cf3080" datatype="html">
+        <source>Home</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/core/component/app.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+        <note priority="1" from="description">&apos;Home&apos;, &apos;Dashboard&apos;, etc</note>
+        <note priority="1" from="meaning">Root Page link</note>
+      </trans-unit>
+      <trans-unit id="2f9a23a2e25da2a82ac09e3d3d8c4c29628f367b" datatype="html">
+        <source>Welcome</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/overview/component/overview.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+        <note priority="1" from="description">Overview page text welcoming user. &apos;ie: &apos;Welcome User&apos;</note>
+        <note priority="1" from="meaning">Welcome header</note>
+      </trans-unit>
+      <trans-unit id="5f009ff51c97f358a6bddc9ff45d3e9bf171d519" datatype="html">
+        <source>Account Balance</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/overview/component/overview.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+        <note priority="1" from="description">Text describing a user&apos;s account balance</note>
+        <note priority="1" from="meaning">Account Balance</note>
+      </trans-unit>
+      <trans-unit id="f8a6240da496c78846b1740b382b55c47a636580" datatype="html">
+        <source>Get Cash</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/overview/component/overview.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+        <note priority="1" from="description">Withdraw cash button text</note>
+      </trans-unit>
+      <trans-unit id="cf06fa6d688bcb358f749f49f5f73deeb4be2a9c" datatype="html">
+        <source>Deposit</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/overview/component/overview.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+        <note priority="1" from="description">Deposit cash button text</note>
+      </trans-unit>
+      <trans-unit id="20ceaefc547a588fde25ce0f54ef18dfaad279c6" datatype="html">
+        <source>Transaction History</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/overview/component/overview.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+        <note priority="1" from="description">Transaction history button text</note>
+      </trans-unit>
+      <trans-unit id="e8711fb4d0d45f6c3c8786a3e712f178f80361db" datatype="html">
+        <source>Quick Cash</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/overview/component/overview.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+        <note priority="1" from="description">Quick cash withdraw button text</note>
+      </trans-unit>
+      <trans-unit id="1562608a51e15e4b123f9b8346f479d93445461e" datatype="html">
+        <source>Please enter the amount you would like to withdraw and then touch Enter</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/withdraw/component/withdraw.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+        <note priority="1" from="description">Withdraw form instructions text</note>
+      </trans-unit>
+      <trans-unit id="dfc2fb58e2a04ed944a4bd80f0a2087775134068" datatype="html">
+        <source>Amount</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/withdraw/component/withdraw.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/withdraw/component/withdraw.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+        <note priority="1" from="description">Withdraw form input label</note>
+      </trans-unit>
+      <trans-unit id="c5486059f2d030b25a3cef9f718171f301af4c15" datatype="html">
+        <source>In multiples of $1.00</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/withdraw/component/withdraw.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+        <note priority="1" from="description">&apos;In multiples of $1.00&apos;</note>
+        <note priority="1" from="meaning">Withdraw form input hint</note>
+      </trans-unit>
+      <trans-unit id="3ab786af0ee4de6cf71ac145c3c7a089fe81dadb" datatype="html">
+        <source>Enter</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/withdraw/component/withdraw.component.html</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+        <note priority="1" from="description">Withdraw form submit button text</note>
+      </trans-unit>
+      <trans-unit id="9a14dfd5849d3ed180f48b83a1960e04657b20be" datatype="html">
+        <source>Please enter a valid amount</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/withdraw/component/withdraw.component.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+        <note priority="1" from="description">Withdraw Form - valid amount error</note>
+      </trans-unit>
+      <trans-unit id="ba6b147d8e4e3ba83ab7bd83918d4c66ed1b656a" datatype="html">
+        <source>Amount must be at least $1.00</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/withdraw/component/withdraw.component.html</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+        <note priority="1" from="description">Withdraw Form - min amount error</note>
+      </trans-unit>
+      <trans-unit id="662dca2febd5cc5879e7955b69313be6ce94c8de" datatype="html">
+        <source>Amount must be less than cash on hand</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/withdraw/component/withdraw.component.html</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+        <note priority="1" from="description">Withdraw Form - exceeds cash on hand error</note>
+      </trans-unit>
+      <trans-unit id="ede5c9b69ac20d21264b0f611326833b3e97a285" datatype="html">
+        <source>Restock ATM</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/restock/component/restock.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+        <note priority="1" from="description">Restock ATM page header text</note>
+      </trans-unit>
+      <trans-unit id="0506671a7884b52741f2c5bc7264b3a0e98911e2" datatype="html">
+        <source>A Lannister always pays his debts</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/restock/component/restock.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+        <note priority="1" from="description">Restock ATM Page header subtitle text</note>
+      </trans-unit>
+      <trans-unit id="d2cd2951f3e534c50b70fe93d4bdd808a14318d3" datatype="html">
+        <source>Enter the amount for each denomination you are restocking</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/restock/component/restock.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+        <note priority="1" from="description">Restock ATM directions text</note>
+      </trans-unit>
+      <trans-unit id="23969f4c018608060babd64b1728088260206f2c" datatype="html">
+        <source>Restocking a total of</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/restock/component/restock.component.html</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+        <note priority="1" from="description">Restock cash total cash text</note>
+      </trans-unit>
+      <trans-unit id="179a5585cda5848f7530d54268c1ae5fb8ec1897" datatype="html">
+        <source> Restock </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/restock/component/restock.component.html</context>
+          <context context-type="linenumber">43,44</context>
+        </context-group>
+        <note priority="1" from="description">Restock cash form enter button text</note>
+      </trans-unit>
+      <trans-unit id="825133ef29b24a3fb809a830f1231de5e513babc" datatype="html">
+        <source>Valid numbers are required for all denominations.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/restock/component/restock.component.html</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
+        <note priority="1" from="description">Restock cash invalid numbers error text</note>
+      </trans-unit>
+      <trans-unit id="920082fcf3c47057cf104dd54bf345149c310e86" datatype="html">
+        <source>Recent Withdraws and Restocks</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/admin/component/admin.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+        <note priority="1" from="description"> &apos;Recent withdraws&apos;, &apos;Transaction History&apos;, etc</note>
+        <note priority="1" from="meaning">Transaction history header</note>
+      </trans-unit>
+      <trans-unit id="5fe1c630066cab1750a6b34d58d0f54d1928d954" datatype="html">
+        <source>&quot;The Iron Bank will have its due&quot;</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/admin/component/admin.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+        <note priority="1" from="description">Optional Transaction history header&apos;s subtitle</note>
+      </trans-unit>
+      <trans-unit id="b9c45b9f0e85c16f8b6e193f122b06de3e5f8c4b" datatype="html">
+        <source> Cash on Hand: <x id="INTERPOLATION" equiv-text="l amount in the account&quot;&gt; Cash on "/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/admin/component/admin.component.html</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+        <note priority="1" from="description">What to call the total amount in the account</note>
+        <note priority="1" from="meaning">Cash on hand text</note>
+      </trans-unit>
+      <trans-unit id="10da539dfe55f50819ce2a4a45316944022e6c4d" datatype="html">
+        <source> Time </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/admin/component/admin.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+        <note priority="1" from="description">Transaction time column header</note>
+      </trans-unit>
+      <trans-unit id="bb60d279d1b544ae80de6c89297fd454f93844e8" datatype="html">
+        <source> Amount </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/admin/component/admin.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+        <note priority="1" from="description">Transaction amount column header</note>
+      </trans-unit>
+      <trans-unit id="69b527dcefa8e8781727fdec3dd5fae44277b6b8" datatype="html">
+        <source> Cash On Hand </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/admin/component/admin.component.html</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+        <note priority="1" from="description">Adjusted cash on hand total column header</note>
+      </trans-unit>
+      <trans-unit id="4fb49e004ac2c135c3f232408cd97e172f49a460" datatype="html">
+        <source>There are no current records of withdraws or restocks</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/admin/component/admin.component.html</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+        <note priority="1" from="description">What to display in the event there are no transaction records available</note>
+        <note priority="1" from="meaning">No records text</note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
