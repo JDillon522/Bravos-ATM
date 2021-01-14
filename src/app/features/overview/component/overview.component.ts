@@ -13,6 +13,7 @@ import { Transaction } from '../../../store/models/transaction';
 })
 export class OverviewComponent implements OnInit {
   public quickCashAmount: number = 70;
+  public userName: string = 'Random User Name';
   @Select(AtmState.getCashOnHand) public cashOnHand$!: Observable<number>;
 
   constructor(

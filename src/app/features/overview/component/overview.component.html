@@ -1,21 +1,21 @@
 
 <aside>
-    <p>Welcome</p>
-    <h2>Random User Name</h2>
-    <p>Account Balance</p>
+    <p i18n="Welcome header|Overview page text welcoming user. 'ie: 'Welcome User'">Welcome</p>
+    <h2>{{userName}}</h2>
+    <p i18n="Account Balance|Text describing a user's account balance">Account Balance</p>
     <h2>{{cashOnHand$ | async | currency}}</h2>
 </aside>
 
 <nav>
-    <button mat-flat-button color="accent" routerLink="/withdraw">Get Cash</button>
-    <button mat-flat-button color="accent" routerLink="/restock">Deposit</button>
-    <button mat-flat-button color="accent" routerLink="/admin">Transaction History</button>
+    <button mat-flat-button color="accent" routerLink="/withdraw" i18n="Withdraw cash button text">Get Cash</button>
+    <button mat-flat-button color="accent" routerLink="/restock" i18n="Deposit cash button text">Deposit</button>
+    <button mat-flat-button color="accent" routerLink="/admin" i18n="Transaction history button text">Transaction History</button>
 
     <button mat-flat-button
             color="accent"
             class="quick-cash"
             (click)="quickCash()"
             [disabled]="(cashOnHand$ | async)! < quickCashAmount">
-                Quick Cash <span>{{quickCashAmount | currency}}</span> <mat-icon>keyboard_arrow_right</mat-icon>
+                <ng-container i18n="Quick cash withdraw button text">Quick Cash</ng-container> <span>{{quickCashAmount | currency}}</span> <mat-icon>keyboard_arrow_right</mat-icon>
     </button>
 </nav>

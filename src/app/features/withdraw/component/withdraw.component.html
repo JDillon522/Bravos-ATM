@@ -1,44 +1,10 @@
-<!-- <mat-card>
-    <mat-card-header>
-        <mat-card-title>Withdraw Funds</mat-card-title>
-        <mat-card-subtitle>The Faceless Men are watching you. Defaulting is not an option.</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>
-
-        <form [formGroup]="form">
-            <mat-form-field appearance="outline">
-                <mat-label>Amount</mat-label>
-                <input matInput
-                       currencyMask
-                       [options]="{
-                            align: 'right',
-                            allowNegative: false,
-                            precision: 0
-                        }"
-                        placeholder="Amount"
-                        formControlName="amount"
-                        type="text">
-
-                <mat-hint>In multiples of $1.00</mat-hint>
-                <mat-error *ngIf="amountControl.errors?.required">Please enter a valid amount</mat-error>
-                <mat-error *ngIf="amountControl.errors?.min">Amount must be at least $1.00</mat-error>
-                <mat-error *ngIf="amountControl.errors?.exceedsOnHand">Amount must be less than cash on hand</mat-error>
-            </mat-form-field>
-        </form>
-
-    </mat-card-content>
-    <mat-card-actions align="end">
-        <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="withdrawCash()">Withdraw</button>
-    </mat-card-actions>
-</mat-card> -->
-
 <section class="form">
     <mat-card>
         <mat-card-content>
-            <h2>Please enter the amount you would like to withdraw and then touch Enter</h2>
+            <h2 i18n="Withdraw form instructions text">Please enter the amount you would like to withdraw and then touch Enter</h2>
             <form [formGroup]="form">
                 <mat-form-field appearance="outline">
-                    <mat-label>Amount</mat-label>
+                    <mat-label i18n="Withdraw form input label">Amount</mat-label>
                     <input matInput
                            currencyMask
                            [options]="{
@@ -47,20 +13,21 @@
                                 precision: 0
                             }"
                             placeholder="Amount"
+                            i18n-placeholder="Withdraw form input placeholder"
                             formControlName="amount"
                             type="text">
 
-                    <mat-hint>In multiples of $1.00</mat-hint>
-                    <mat-error *ngIf="amountControl.errors?.required">Please enter a valid amount</mat-error>
-                    <mat-error *ngIf="amountControl.errors?.min">Amount must be at least $1.00</mat-error>
-                    <mat-error *ngIf="amountControl.errors?.exceedsOnHand">Amount must be less than cash on hand</mat-error>
+                    <mat-hint i18n="Withdraw form input hint|'In multiples of $1.00'">In multiples of $1.00</mat-hint>
+                    <mat-error *ngIf="amountControl.errors?.required" i18n="Withdraw Form - valid amount error">Please enter a valid amount</mat-error>
+                    <mat-error *ngIf="amountControl.errors?.min" i18n="Withdraw Form - min amount error">Amount must be at least $1.00</mat-error>
+                    <mat-error *ngIf="amountControl.errors?.exceedsOnHand" i18n="Withdraw Form - exceeds cash on hand error">Amount must be less than cash on hand</mat-error>
                 </mat-form-field>
             </form>
 
         </mat-card-content>
 
         <mat-card-actions align="end">
-            <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="withdrawCash()">Enter</button>
+            <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="withdrawCash()" i18n="Withdraw form submit button text">Enter</button>
         </mat-card-actions>
     </mat-card>
 

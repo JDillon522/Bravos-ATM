@@ -1,44 +1,45 @@
 <mat-card>
     <mat-card-header>
-        <mat-card-title>Restock ATM</mat-card-title>
-        <mat-card-subtitle>A Lannister always pays his debts</mat-card-subtitle>
+        <mat-card-title i18n="Restock ATM page header text">Restock ATM</mat-card-title>
+        <mat-card-subtitle i18n="Restock ATM Page header subtitle text">A Lannister always pays his debts</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
-        <p>Enter the amount for each denomination you are restocking</p>
+        <p i18n="Restock ATM directions text">Enter the amount for each denomination you are restocking</p>
         <form [formGroup]="form">
             <div>
                 <mat-form-field>
-                    <input matInput type="number" min="0" placeholder="$100" formControlName="hundreds">
+                    <input matInput type="number" min="0" placeholder="{{100 | currency}}" formControlName="hundreds">
                 </mat-form-field>
                 <mat-form-field>
-                    <input matInput type="number" min="0" placeholder="$50" formControlName="fifties">
+                    <input matInput type="number" min="0" placeholder="{{50 | currency}}" formControlName="fifties">
                 </mat-form-field>
                 <mat-form-field>
-                    <input matInput type="number" min="0" placeholder="$20" formControlName="twenties">
+                    <input matInput type="number" min="0" placeholder="{{20 | currency}}" formControlName="twenties">
                 </mat-form-field>
             </div>
 
             <div>
                 <mat-form-field>
-                    <input matInput type="number" min="0" placeholder="$10" formControlName="tens">
+                    <input matInput type="number" min="0" placeholder="{{10 | currency}}" formControlName="tens">
                 </mat-form-field>
                 <mat-form-field>
-                    <input matInput type="number" min="0" placeholder="$5" formControlName="fives">
+                    <input matInput type="number" min="0" placeholder="{{5 | currency}}" formControlName="fives">
                 </mat-form-field>
                 <mat-form-field>
-                    <input matInput type="number" min="0" placeholder="$1" formControlName="ones">
+                    <input matInput type="number" min="0" placeholder="{{1 | currency}}" formControlName="ones">
                 </mat-form-field>
             </div>
 
-            <mat-error *ngIf="form.invalid">Valid numbers are required for all denominations.</mat-error>
+            <mat-error *ngIf="form.invalid" i18n="Restock cash invalid numbers error text">Valid numbers are required for all denominations.</mat-error>
         </form>
     </mat-card-content>
     <mat-card-actions>
-        <span>Restocking a total of: {{totalNewCash | currency}}</span>
+        <span><ng-container i18n="Restock cash total cash text">Restocking a total of</ng-container>: {{totalNewCash | currency}}</span>
         <button mat-raised-button
                 color="primary"
                 (click)="restockCash()"
-                [disabled]="form.invalid || totalNewCash === 0 || manualDisable">
+                [disabled]="form.invalid || totalNewCash === 0 || manualDisable"
+                i18n="Restock cash form enter button text">
             Restock
         </button>
     </mat-card-actions>

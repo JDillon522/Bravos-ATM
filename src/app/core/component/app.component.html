@@ -1,28 +1,15 @@
-<!-- <mat-toolbar color="primary">
-  <mat-toolbar-row>
-    <mat-icon>account_balance</mat-icon> Welcome to the Bank of Bravos ATM
-  </mat-toolbar-row>
-
-  <mat-toolbar-row id="nav">
-    <button mat-raised-button color=accent routerLink="/" routerLinkActive="active">Overview</button>
-    <button mat-raised-button color=accent routerLink="/withdraw" routerLinkActive="active">Withdraw Funds</button>
-    <button mat-raised-button color=accent routerLink="/restock" routerLinkActive="active">Restock ATM</button>
-  </mat-toolbar-row>
-  <mat-toolbar-row id="cashOnHand">
-    <h3>Cash on Hand: {{cashOnHand$ | async | currency}}</h3>
-    <span>$100.00: {{(denomOnHand$ | async)?.hundreds}}</span>
-    <span>$50.00: {{(denomOnHand$ | async)?.fifties}}</span>
-    <span>$20.00: {{(denomOnHand$ | async)?.twenties}}</span>
-    <span>$10.00: {{(denomOnHand$ | async)?.tens}}</span>
-    <span>$5.00: {{(denomOnHand$ | async)?.fives}}</span>
-    <span>$1.00: {{(denomOnHand$ | async)?.ones}}</span>
-  </mat-toolbar-row>
-</mat-toolbar> -->
-
 <header>
-  <h1>Bravos ATM</h1>
-  <button mat-flat-button color="primary" routerLink="/" *ngIf="showHomeLink"><mat-icon>keyboard_arrow_left</mat-icon> Home </button>
-  <button mat-flat-button color="primary">Exit and Return Card <mat-icon>credit_card</mat-icon></button>
+  <h1 i18n="ATM Name|'Bravos ATM', 'Bank of America ATM', etc">Bravos ATM</h1>
+  <button mat-flat-button color="primary" routerLink="/" *ngIf="showHomeLink">
+    <mat-icon>keyboard_arrow_left</mat-icon> <ng-container i18n="Root Page link|'Home', 'Dashboard', etc">Home</ng-container>
+  </button>
+
+  <button mat-flat-button color="primary">
+    <ng-container i18n="Quit ATM text|Text to describe the act of returning the user's card and exiting the app">
+      Exit and Return Card
+    </ng-container>
+    <mat-icon>credit_card</mat-icon>
+  </button>
 </header>
 
 <main>
